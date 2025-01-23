@@ -3,7 +3,7 @@ import LogoPlaceholder from "../assets/logo-placeholder.png";
 function Navbar() {
     return (
         <menu>
-            <div className="menu-container">
+            <div className="menu-container container">
                 <nav>
                     <img src={LogoPlaceholder} alt="Logo placeholder" className="logo" />
                 </nav>
