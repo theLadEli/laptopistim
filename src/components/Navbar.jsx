@@ -1,24 +1,22 @@
-import LogoPlaceholder from "../assets/logo-placeholder.png";
+import Logo from "../assets/logo.svg";
 
 function Navbar() {
     return (
-        <menu>
-            <div className="menu-container container">
-                <nav>
-                    <img src={LogoPlaceholder} alt="Logo placeholder" className="logo" />
-                </nav>
+        <div className="container">
+            <menu>
+                <img src={Logo} alt="Logo" className="logo" />
 
-                <ul id="nav-links">
+                <nav className="row">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#spots">Spots</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contribute">Contribute</a></li>
                     <li><a href="#contact">Contact</a></li>
-                </ul>
+                </nav>
 
-                <button>Sign Up</button>
-            </div>
-        </menu>
+                <button className="primary">Register</button>
+            </menu>
+        </div>
     )
 }
 
