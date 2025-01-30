@@ -1,10 +1,32 @@
 import { useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
+import Slider from "react-slick";
+
+// Images
+import DoubleChevronRight from './assets/double-chevron-right.svg'
+import MapPin from './assets/map-pin.svg'
+import PowerSockets from './assets/power-sockets.svg'
+import Crowdedness from './assets/crowdedness.svg'
+import Clock from './assets/clock.svg'
+
+// temp
+import NehamaVehatziImg from './assets/nahama-vehatzi.png'
+// /temp
 
 function App() {
 
+  const sliderSettings = {
+    dots: false,
+    arrows: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+  };
+
   return (
+
     <>
       <Navbar />
 
@@ -20,7 +42,7 @@ function App() {
 
             <div className="row subtitle">
               <hr/>
-              <h2>noun</h2>
+              <h5>noun</h5>
             </div>
           </div>
 
@@ -43,6 +65,55 @@ function App() {
 
         </header>
       </div>
+
+      <div className="container">
+        <section id='latest-spots'>
+
+          <div className="ls-title row">
+            <h2>Latest spots</h2>
+            <button className="secondary">View All<img src={DoubleChevronRight} height="14"/></button>
+          </div>
+
+          <div className="slider-container">
+            <Slider {...sliderSettings}>
+
+              <article className="ls-card">
+                <img src={NehamaVehatziImg} alt="Nehama Vehatzi image" className='lsc-cover-img' />
+                <div className='lsc-info'>
+                  <h3>Nehama Vahetzi</h3>
+                  <div className="lsci-address">
+                    <img src={MapPin} />
+                    Shenkin 43, Tel Aviv
+                  </div>
+
+                  <ul>
+                    <li>
+                      <img src={PowerSockets} /> Power sockets
+                    </li>
+                    <li>
+                      <img src={Crowdedness} /> Usually busy
+                    </li>
+                    <li>
+                      <img src={Clock} /> Open late
+                    </li>
+                  </ul>
+                </div>
+              </article>
+              
+              <article>
+                <h2>2</h2>
+              </article>
+              <article>
+                <h2>3</h2>
+              </article>
+
+            </Slider>
+          </div>
+
+        </section>
+      </div>
+
+
     </>
   )
 }
