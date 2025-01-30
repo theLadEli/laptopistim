@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 import Slider from "react-slick";
 
 // Images
@@ -14,15 +15,34 @@ import Clock from './assets/clock.svg'
 import NehamaVehatziImg from './assets/nahama-vehatzi.png'
 // /temp
 
+function ArrowPrev(props) {
+  const { onClick } = props;
+
+  return(
+    <button onClick={onClick} className='slider-arrow'>←</button>
+  )
+}
+
+function ArrowNext(props) {
+  const {onClick } = props;
+
+  return(
+    <button onClick={onClick} className='slider-arrow'>→</button>
+  )
+}
+
 function App() {
 
   const sliderSettings = {
     dots: false,
+    buttons: false,
     arrows: true,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    prevArrow: <ArrowPrev />,
+    nextArrow: <ArrowNext />
   };
 
   return (
@@ -61,7 +81,7 @@ function App() {
           <div className="row btn-row">
             <button className="primary">Find a cafe to work from</button>
             <button className="secondary">Add your cafe</button>
-          </div>
+      </div>
 
         </header>
       </div>
@@ -77,7 +97,8 @@ function App() {
           <div className="slider-container">
             <Slider {...sliderSettings}>
 
-              <article className="ls-card">
+              {Array(4).fill().map((_, index) => (
+                <article key={index} className="ls-card">
                 <img src={NehamaVehatziImg} alt="Nehama Vehatzi image" className='lsc-cover-img' />
                 <div className='lsc-info'>
                   <h3>Nehama Vahetzi</h3>
@@ -86,7 +107,7 @@ function App() {
                     Shenkin 43, Tel Aviv
                   </div>
 
-                  <ul>
+                  <ul className='row'>
                     <li>
                       <img src={PowerSockets} /> Power sockets
                     </li>
@@ -98,20 +119,29 @@ function App() {
                     </li>
                   </ul>
                 </div>
-              </article>
-              
-              <article>
-                <h2>2</h2>
-              </article>
-              <article>
-                <h2>3</h2>
-              </article>
+                </article>
+              ))}
 
             </Slider>
           </div>
 
         </section>
       </div>
+
+      <div className="container">
+        <section id="cities">
+
+            <h2>Cities</h2>
+            <div className="row">
+
+              {/* City cards */}
+
+            </div>
+
+        </section>
+      </div>
+
+      <Footer />
 
 
     </>
