@@ -9,6 +9,33 @@ body {
   background-color: #FBF8F3;
 }
 
+/* Global Styles */
+
+h1 {
+  font-family: 'Funnel Display', serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 6rem;
+  line-height: 7.5rem;
+  color: #000000;
+}
+
+h2 {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 2.4rem;
+  line-height: 3rem;
+}
+
+p {
+  font-family: 'Ubuntu Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2.4rem;
+  line-height: 3.6rem;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -31,7 +58,6 @@ body {
   justify-content: center;
   align-items: center;
   padding: 0.8rem 2.4rem;
-  /* padding: 8px 24px; */
   gap: 10px;
   background: #262626;
   border-radius: 90px;
@@ -43,6 +69,25 @@ body {
   font-size: 2.2rem;
   line-height: 2.8rem;
   color: #FFFFFF;
+}
+
+.secondary {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 0.8rem 2.4rem;
+  border: 2px solid #262626;
+  background: #fbf8f300;
+  border-radius: 90px;
+
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 2.2rem;
+  line-height: 2.8rem;
+  color: #262626;
 }
 
 /* Navbar */
@@ -80,7 +125,89 @@ nav li a {
   text-decoration: none;
 }
 
+/* Header */
+.header-container {
+  /* background: url(./assets/coffee-full.svg); */
+  background: url(./assets/coffee-graphic.svg);
+  background-repeat: no-repeat;
+  background-position: center right;
+  background-size: auto 56rem;
+
+}
+
+header {
+  max-width: 1440px;
+  width: 100%;
+  padding: 80px 12rem;
+  gap: 6rem;
+}
+
+.title {
+  gap: 15px;
+}
+
+.headings {
+  gap: 2rem;
+}
+
+.h1-hb {
+  font-family: 'Anka CLM';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 6rem;
+  line-height: 6.9rem;
+  color: #000000;
+}
+
+.subtitle {
+  gap: 16px;
+  align-items: center;
+}
+
+hr {
+  height: 2px;
+  width: 130px;
+  background-color: black;
+  border: none;
+}
+
+.definitions {
+  gap: 3.6rem;
+  max-width: 96rem;
+}
+
+.definitions div {
+  gap: 1.4rem;
+}
+
+.def-title-num {
+  font-family: 'Ubuntu Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 2.4rem;
+  line-height: 2.9rem;
+  color: #000000;
+}
+
+.def-title {
+  font-family: 'Ubuntu Sans';
+  font-style: italic;
+  font-weight: 500;
+  font-size: 2.4rem;
+  line-height: 2.9rem;
+}
+
+.def-body {
+  margin-left: 2.4rem;
+}
+
+.btn-row {
+  gap: 3rem;
+}
+
+/* -------------------------- */
 /* Multi Device Optimisation */
+/* -------------------------- */
 
 /* Media query for Medium screen size */
 @media (max-width: 1200px) {
@@ -88,12 +215,19 @@ nav li a {
     font-size: 9px;
   }
 
+  .definitions {
+    max-width: 82rem;
+  }
 }
 
 /* Media query for Small Desktop screen size */
 @media (max-width: 1000px) {
   * {
     font-size: 8px;
+  }
+
+  .definitions {
+    max-width: 80rem;
   }
 
 }
@@ -104,11 +238,32 @@ nav li a {
     font-size: 6px;
   }
 
+  .definitions {
+    max-width: 90rem;
+  }
+
+}
+
+@media (max-width: 700px) {
+  * {
+    font-size: 6px;
+  }
+
+  .definitions {
+    max-width: 65rem;
+  }
+  
+
 }
 
 /* Media query for mobile screen size */
 @media (max-width: 580px) {
   nav {
     gap: 3rem;
+  }
+
+
+  .definitions {
+    max-width: 64rem;
   }
 }
