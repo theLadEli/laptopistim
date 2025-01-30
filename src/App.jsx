@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -10,10 +10,7 @@ import MapPin from './assets/map-pin.svg'
 import PowerSockets from './assets/power-sockets.svg'
 import Crowdedness from './assets/crowdedness.svg'
 import Clock from './assets/clock.svg'
-
-// temp
-import NehamaVehatziImg from './assets/nahama-vehatzi.png'
-// /temp
+import WiFi from './assets/WiFi.svg'
 
 function ArrowPrev(props) {
   const { onClick } = props;
@@ -33,17 +30,15 @@ function ArrowNext(props) {
 
 function App() {
 
-  const sliderSettings = {
-    dots: false,
-    buttons: false,
-    arrows: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    prevArrow: <ArrowPrev />,
-    nextArrow: <ArrowNext />
-  };
+  // Fetch 10 recent spots
+  const [spots, setSpots] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:4769/spots/latest')
+      .then(res => res.json())  // Parse response to JSON
+      .then(data => setSpots(data))  // Update the 'spots' state with fetched data
+      .catch(err => console.error('Error fetching spots:', err));  // Handle errors
+  }, []);
 
   return (
 
@@ -81,7 +76,7 @@ function App() {
           <div className="row btn-row">
             <button className="primary">Find a cafe to work from</button>
             <button className="secondary">Add your cafe</button>
-      </div>
+          </div>
 
         </header>
       </div>
@@ -94,36 +89,47 @@ function App() {
             <button className="secondary">View All<img src={DoubleChevronRight} height="14"/></button>
           </div>
 
-          <div className="slider-container">
-            <Slider {...sliderSettings}>
+          {spots.map(spot => (
+            <article key={spot.id} className="ls-card">
+              <img src={spot.image} alt={`${spot.name} image`} className='lsc-cover-img' />
+              <div className='lsc-info'>
+                <h3>{spot.name}</h3>
+                <div className="lsci-address">
+                  <img src={MapPin} />
+                  {spot.address}
+                </div>
 
-              {Array(4).fill().map((_, index) => (
-                <article key={index} className="ls-card">
-                <img src={NehamaVehatziImg} alt="Nehama Vehatzi image" className='lsc-cover-img' />
-                <div className='lsc-info'>
-                  <h3>Nehama Vahetzi</h3>
-                  <div className="lsci-address">
-                    <img src={MapPin} />
-                    Shenkin 43, Tel Aviv
-                  </div>
+                {/* Conditional rendering based on feedback type averages */}
+                <ul className="row">
 
-                  <ul className='row'>
+                  {spot.avgRatings['Power sockets'] >= 3 && (
                     <li>
                       <img src={PowerSockets} /> Power sockets
                     </li>
+                  )}
+                  
+                  {spot.avgRatings['WiFi'] >= 3 && (
                     <li>
-                      <img src={Crowdedness} /> Usually busy
+                      <img src={WiFi} /> WiFi
                     </li>
+                  )}
+                  
+                  {spot.avgRatings['Open late'] >= 3 && (
                     <li>
                       <img src={Clock} /> Open late
                     </li>
-                  </ul>
-                </div>
-                </article>
-              ))}
+                  )}
 
-            </Slider>
-          </div>
+                  {spot.avgRatings['Crowdedness'] >= 3 && (
+                    <li>
+                      <img src={Crowdedness} /> Usually busy
+                    </li>
+                  )}
+                </ul>
+              </div>
+            </article>
+          ))}
+
 
         </section>
       </div>
