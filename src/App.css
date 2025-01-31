@@ -108,6 +108,10 @@ p {
   color: #262626;
 }
 
+button {
+  cursor: pointer;
+}
+
 /* Navbar */
 
 menu {
@@ -256,12 +260,16 @@ hr {
   gap: 8px;
   margin-top: 10px;
   margin-bottom: 26px;
+}
+
+.lsci-address a {
   font-family: 'Outfit';
   font-style: normal;
   font-weight: 300;
   font-size: 18px;
   line-height: 23px;
   color: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
 }
 
 .lsc-info {
