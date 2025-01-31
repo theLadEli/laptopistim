@@ -4,7 +4,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Slider from "react-slick";
 
-// Images
+// Icons
 import DoubleChevronRight from './assets/double-chevron-right.svg'
 import MapPin from './assets/map-pin.svg'
 import PowerSockets from './assets/power-sockets.svg'
@@ -12,23 +12,34 @@ import Crowdedness from './assets/crowdedness.svg'
 import Clock from './assets/clock.svg'
 import WiFi from './assets/WiFi.svg'
 
-function ArrowPrev(props) {
-  const { onClick } = props;
-
-  return(
-    <button onClick={onClick} className='slider-arrow'>←</button>
-  )
-}
-
-function ArrowNext(props) {
-  const {onClick } = props;
-
-  return(
-    <button onClick={onClick} className='slider-arrow'>→</button>
-  )
-}
+// City Imags
+import TelAviv from './assets/cities/tel-aviv.png'
+import Jerusalem from './assets/cities/jerusalem.png'
+import Haifa from './assets/cities/haifa.png'
+import RamatGan from './assets/cities/ramat-gan.png'
 
 function App() {
+
+  const cities = [{
+    name: "Tel Aviv",
+    image: TelAviv,
+    spots: 35
+  },
+  {
+    name: "Ramat Gan",
+    image: RamatGan,
+    spots: 8
+  },
+  {
+    name: "Haifa",
+    image: Haifa,
+    spots: 15
+  },
+  {
+    name: "Jerusalem",
+    image: Jerusalem,
+    spots: 12
+  }]
 
   // Fetch 10 recent spots
   const [spots, setSpots] = useState([]);
@@ -82,67 +93,85 @@ function App() {
       </div>
 
       <div className="container">
-        <section id='latest-spots'>
+        <section className='column' id='latest-spots'>
 
           <div className="ls-title row">
             <h2>Latest spots</h2>
             <button className="secondary">View All<img src={DoubleChevronRight} height="14"/></button>
           </div>
 
-          {spots.map(spot => (
-            <article key={spot.id} className="ls-card">
-              <img src={spot.image} alt={`${spot.name} image`} className='lsc-cover-img' />
-              <div className='lsc-info'>
-                <h3>{spot.name}</h3>
-                <div className="lsci-address">
-                  <img src={MapPin} />
-                  <a href={`https://www.google.com/maps/search/${spot.address}`}>
-                    {spot.address}
-                  </a>
+          <div id="ls-carousel">
+            {spots.map(spot => (
+              <article key={spot.id} className="ls-card">
+                <img src={spot.image} alt={`${spot.name} image`} className='lsc-cover-img' />
+                <div className='lsc-info'>
+                  <h3>{spot.name}</h3>
+                  <div className="lsci-address">
+                    <img src={MapPin} />
+                    <a href={`https://www.google.com/maps/search/${spot.address}`}>
+                      {spot.address}
+                    </a>
+                  </div>
+
+                  {/* Conditional rendering based on feedback type averages */}
+                  <ul className="row">
+
+                    {spot.avgRatings['Power sockets'] >= 3 && (
+                      <li>
+                        <img src={PowerSockets} /> Power sockets
+                      </li>
+                    )}
+                    
+                    {spot.avgRatings['WiFi'] >= 3 && (
+                      <li>
+                        <img src={WiFi} /> WiFi
+                      </li>
+                    )}
+                    
+                    {spot.avgRatings['Open late'] >= 3 && (
+                      <li>
+                        <img src={Clock} /> Open late
+                      </li>
+                    )}
+
+                    {spot.avgRatings['Crowdedness'] >= 3 && (
+                      <li>
+                        <img src={Crowdedness} /> Usually busy
+                      </li>
+                    )}
+                  </ul>
                 </div>
-
-                {/* Conditional rendering based on feedback type averages */}
-                <ul className="row">
-
-                  {spot.avgRatings['Power sockets'] >= 3 && (
-                    <li>
-                      <img src={PowerSockets} /> Power sockets
-                    </li>
-                  )}
-                  
-                  {spot.avgRatings['WiFi'] >= 3 && (
-                    <li>
-                      <img src={WiFi} /> WiFi
-                    </li>
-                  )}
-                  
-                  {spot.avgRatings['Open late'] >= 3 && (
-                    <li>
-                      <img src={Clock} /> Open late
-                    </li>
-                  )}
-
-                  {spot.avgRatings['Crowdedness'] >= 3 && (
-                    <li>
-                      <img src={Crowdedness} /> Usually busy
-                    </li>
-                  )}
-                </ul>
-              </div>
-            </article>
-          ))}
-
+              </article>
+            ))}
+          </div>
+          <div className="ls-carousel-arrows row">
+            <button className='slider-arrow'>←</button>
+            <button className='slider-arrow'>→</button>
+          </div>
 
         </section>
       </div>
 
       <div className="container">
-        <section id="cities">
+        <section className='column' id="cities">
 
             <h2>Cities</h2>
-            <div className="row">
+            <div className="city-row row">
 
-              {/* City cards */}
+              {cities.map(city => {
+                return (
+                  <div key={city.name} className="city-card row">
+                    <img className='city-img' src={city.image} alt={`${city.name} image`} />
+                    <div className="city-info column">
+                      <h3>{city.name}</h3>
+                      <div className="city-stats row">
+                      <img src={MapPin} />
+                        {city.spots} spots
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
 
             </div>
 

@@ -3,15 +3,16 @@ import FooterLogo from '../assets/footer-logo.svg';
 export default function Footer() {
     return (
     <>
-        <footer>
+    <div className="footer-container">
+    <footer>
             <div className="footer-logo">
                 <img src={FooterLogo} alt="Logo" />
             </div>
 
-            <div className="footer-links">
+            <div className="footer-links row">
 
-                <div className="footer-links-col">
-                    <h6>Quick Links</h6>
+                <div className="footer-links-col fl-small">
+                    <h4>Quick Links</h4>
                     <ul>
                         <li><a>Home</a></li>
                         <li><a>About</a></li>
@@ -21,8 +22,8 @@ export default function Footer() {
                     </ul>
                 </div>
 
-                <div className="footer-links-col">
-                    <h6>Cities</h6>
+                <div className="footer-links-col fl-small">
+                    <h4>Cities</h4>
                     <ul>
                         <li><a>Tel Aviv</a></li>
                         <li><a>Ramat Gan</a></li>
@@ -31,8 +32,8 @@ export default function Footer() {
                     </ul>
                 </div>
 
-                <div className="footer-links-col">
-                    <h6>Newsletter</h6>
+                <div className="footer-links-col fl-large">
+                    <h4>Newsletter</h4>
                     <p>Stay in touch</p>
                     {/* To be added (form) */}
                 </div>
@@ -40,6 +41,7 @@ export default function Footer() {
             </div>
 
         </footer>
+    </div>
     </>
     )
 }
