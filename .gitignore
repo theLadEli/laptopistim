@@ -26,3 +26,5 @@ dist-ssr
 # Personal Files
 src/assets/temp-cover.jpg
 backend/.env
+backend/config/.env
+.env
