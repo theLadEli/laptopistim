@@ -433,6 +433,10 @@ hr {
   height: 200px;
 }
 
+.cc-city-name {
+  text-transform: capitalize;
+}
+
 .city-info {
   padding-bottom: 30px;
   gap: 10px;

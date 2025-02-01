@@ -1,7 +1,19 @@
 import db from '../config/database.js';
 
 export default async function getCities(){
-    return await db('cities').select('*');
+
+    try {
+        return await db('cities')
+        .leftJoin('spots', 'cities.id', 'spots.city')
+        .andWhere('spots.approved', true)
+        .select('cities.id', 'cities.name', 'cities.cover')
+        .count('spots.id as spots_count')
+        .groupBy('cities.id')   
+    } catch (error) {
+        console.error("Error fetching city stats:", error);  // Log the error to the console for debugging
+        throw new Error('Error fetching city stats');
+    }
+    
 }
 
 export async function getCityStats(city){
