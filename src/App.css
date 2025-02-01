@@ -393,6 +393,7 @@ hr {
 .ls-carousel-arrows {
   justify-content: flex-end;
   gap: 80px;
+  margin-top: 15px;
 }
 
 .slider-arrow {

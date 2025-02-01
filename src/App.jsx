@@ -100,79 +100,71 @@ function App() {
             <button className="secondary">View All<img src={DoubleChevronRight} height="14"/></button>
           </div>
 
-          <div id="ls-carousel">
-
-          </div>
-
-          {/* SPLIDE TEST */}
-
-              <Splide hasTrack={false}
-                options={ {
-                  rewind: true,
-                  gap: '30px',
-                  arrows: true,
-                  perPage: 3,
-                  perMove: 1,
-                  autoHeight: false,
-                  pagination: false
-                } }
-                aria-label="My Favorite Images"
-              >
-                <SplideTrack>
-                  {spots.map(spot => (
-                    <SplideSlide>
-                      <article key={spot.id} className="ls-card">
-                        <img src={spot.image} alt={`${spot.name} image`} className='lsc-cover-img' />
-                        <div className='lsc-info'>
-                          <h3>{spot.name}</h3>
-                          <div className="lsci-address">
-                            <img src={MapPin} />
-                            <a href={`https://www.google.com/maps/search/${spot.address}`}>
-                              {spot.address}
-                            </a>
-                          </div>
-
-                          {/* Conditional rendering based on feedback type averages */}
-                          <ul className="row">
-
-                            {spot.avgRatings['Power sockets'] >= 3 && (
-                              <li>
-                                <img src={PowerSockets} /> Power sockets
-                              </li>
-                            )}
-                            
-                            {spot.avgRatings['WiFi'] >= 3 && (
-                              <li>
-                                <img src={WiFi} /> WiFi
-                              </li>
-                            )}
-                            
-                            {spot.avgRatings['Open late'] >= 3 && (
-                              <li>
-                                <img src={Clock} /> Open late
-                              </li>
-                            )}
-
-                            {spot.avgRatings['Crowdedness'] >= 3 && (
-                              <li>
-                                <img src={Crowdedness} /> Usually busy
-                              </li>
-                          )}
-                        </ul>
+          <Splide hasTrack={false}
+            options={ {
+              rewind: true,
+              gap: '30px',
+              arrows: true,
+              perPage: 3,
+              perMove: 1,
+              autoHeight: false,
+              pagination: false
+            } }
+            aria-label="My Favorite Images"
+          >
+            <SplideTrack>
+              {spots.map(spot => (
+                <SplideSlide>
+                  <article key={spot.id} className="ls-card">
+                    <img src={spot.image} alt={`${spot.name} image`} className='lsc-cover-img' />
+                    <div className='lsc-info'>
+                      <h3>{spot.name}</h3>
+                      <div className="lsci-address">
+                        <img src={MapPin} />
+                        <a href={`https://www.google.com/maps/search/${spot.address}`}>
+                          {spot.address}
+                        </a>
                       </div>
-                    </article>
-                    </SplideSlide>
-                  ))}
-                </SplideTrack>
-                
-                <div className="splide__arrows row ls-carousel-arrows">
-                  <button className="splide__arrow splide__arrow--prev slider-arrow">←</button>
-                  <button className="splide__arrow splide__arrow--next slider-arrow">→</button>
-                </div>
 
-              </Splide>
+                      {/* Conditional rendering based on feedback type averages */}
+                      <ul className="row">
 
-          {/* END SPIDE TEST */}
+                        {spot.avgRatings['Power sockets'] >= 3 && (
+                          <li>
+                            <img src={PowerSockets} /> Power sockets
+                          </li>
+                        )}
+                        
+                        {spot.avgRatings['WiFi'] >= 3 && (
+                          <li>
+                            <img src={WiFi} /> WiFi
+                          </li>
+                        )}
+                        
+                        {spot.avgRatings['Open late'] >= 3 && (
+                          <li>
+                            <img src={Clock} /> Open late
+                          </li>
+                        )}
+
+                        {spot.avgRatings['Crowdedness'] >= 3 && (
+                          <li>
+                            <img src={Crowdedness} /> Usually busy
+                          </li>
+                      )}
+                    </ul>
+                  </div>
+                </article>
+                </SplideSlide>
+              ))}
+            </SplideTrack>
+            
+            <div className="splide__arrows row ls-carousel-arrows">
+              <button className="splide__arrow splide__arrow--prev slider-arrow">←</button>
+              <button className="splide__arrow splide__arrow--next slider-arrow">→</button>
+            </div>
+
+          </Splide>
 
         </section>
       </div>
@@ -204,8 +196,6 @@ function App() {
       </div>
 
       <Footer />
-
-
     </>
   )
 }
