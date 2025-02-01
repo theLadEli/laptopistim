@@ -1,209 +1,209 @@
 @font-face {
     font-family: 'Funnel Display';
-    src: url('./assets/fonts/Funnel_Display/FunnelDisplay-Light.ttf') format('truetype');
+    src: url('../assets/fonts/Funnel_Display/FunnelDisplay-Light.ttf') format('truetype');
     font-weight: 300;
 }
 
 @font-face {
     font-family: 'Funnel Display';
-    src: url('./assets/fonts/Funnel_Display/FunnelDisplay-Regular.ttf') format('truetype');
+    src: url('../assets/fonts/Funnel_Display/FunnelDisplay-Regular.ttf') format('truetype');
     font-weight: 400;
 }
 
 @font-face {
     font-family: 'Funnel Display';
-    src: url('./assets/fonts/Funnel_Display/FunnelDisplay-Medium.ttf') format('truetype');
+    src: url('../assets/fonts/Funnel_Display/FunnelDisplay-Medium.ttf') format('truetype');
     font-weight: 500;
 }
 
 @font-face {
     font-family: 'Funnel Display';
-    src: url('./assets/fonts/Funnel_Display/FunnelDisplay-SemiBold.ttf') format('truetype');
+    src: url('../assets/fonts/Funnel_Display/FunnelDisplay-SemiBold.ttf') format('truetype');
     font-weight: 600;
 }
 
 @font-face {
     font-family: 'Funnel Display';
-    src: url('./assets/fonts/Funnel_Display/FunnelDisplay-Bold.ttf') format('truetype');
+    src: url('../assets/fonts/Funnel_Display/FunnelDisplay-Bold.ttf') format('truetype');
     font-weight: 700;
 }
 
 @font-face {
     font-family: 'Funnel Display';
-    src: url('./assets/fonts/Funnel_Display/FunnelDisplay-ExtraBold.ttf') format('truetype');
+    src: url('../assets/fonts/Funnel_Display/FunnelDisplay-ExtraBold.ttf') format('truetype');
     font-weight: 800;
 }
 
 /* Outfit Font */
 @font-face {
     font-family: 'Outfit';
-    src: url('./assets/fonts/Outfit/Outfit-Thin.ttf') format('truetype');
+    src: url('../assets/fonts/Outfit/Outfit-Thin.ttf') format('truetype');
     font-weight: 100;
 }
 
 @font-face {
     font-family: 'Outfit';
-    src: url('./assets/fonts/Outfit/Outfit-ExtraLight.ttf') format('truetype');
+    src: url('../assets/fonts/Outfit/Outfit-ExtraLight.ttf') format('truetype');
     font-weight: 200;
 }
 
 @font-face {
     font-family: 'Outfit';
-    src: url('./assets/fonts/Outfit/Outfit-Light.ttf') format('truetype');
+    src: url('../assets/fonts/Outfit/Outfit-Light.ttf') format('truetype');
     font-weight: 300;
 }
 
 @font-face {
     font-family: 'Outfit';
-    src: url('./assets/fonts/Outfit/Outfit-Regular.ttf') format('truetype');
+    src: url('../assets/fonts/Outfit/Outfit-Regular.ttf') format('truetype');
     font-weight: 400;
 }
 
 @font-face {
     font-family: 'Outfit';
-    src: url('./assets/fonts/Outfit/Outfit-Medium.ttf') format('truetype');
+    src: url('../assets/fonts/Outfit/Outfit-Medium.ttf') format('truetype');
     font-weight: 500;
 }
 
 @font-face {
     font-family: 'Outfit';
-    src: url('./assets/fonts/Outfit/Outfit-SemiBold.ttf') format('truetype');
+    src: url('../assets/fonts/Outfit/Outfit-SemiBold.ttf') format('truetype');
     font-weight: 600;
 }
 
 @font-face {
     font-family: 'Outfit';
-    src: url('./assets/fonts/Outfit/Outfit-Bold.ttf') format('truetype');
+    src: url('../assets/fonts/Outfit/Outfit-Bold.ttf') format('truetype');
     font-weight: 700;
 }
 
 @font-face {
     font-family: 'Outfit';
-    src: url('./assets/fonts/Outfit/Outfit-ExtraBold.ttf') format('truetype');
+    src: url('../assets/fonts/Outfit/Outfit-ExtraBold.ttf') format('truetype');
     font-weight: 800;
 }
 
 @font-face {
     font-family: 'Outfit';
-    src: url('./assets/fonts/Outfit/Outfit-Black.ttf') format('truetype');
+    src: url('../assets/fonts/Outfit/Outfit-Black.ttf') format('truetype');
     font-weight: 900;
 }
 
 @font-face {
     font-family: 'Anka CLM';
-    src: url('./assets/fonts/anka/ankaclm-bold-webfont.woff') format('woff'),
-        url('./assets/fonts/anka/ankaclm-bold-webfont.ttf') format('truetype');
+    src: url('../assets/fonts/anka/ankaclm-bold-webfont.woff') format('woff'),
+        url('../assets/fonts/anka/ankaclm-bold-webfont.ttf') format('truetype');
     font-weight: 700;
 }
 
 @font-face {
     font-family: 'Ubuntu Sans';
-    src: url('./assets/fonts/Ubuntu_Sans/UbuntuSans-Thin.ttf') format('truetype');
+    src: url('../assets/fonts/Ubuntu_Sans/UbuntuSans-Thin.ttf') format('truetype');
     font-weight: 100;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Ubuntu Sans';
-    src: url('./assets/fonts/Ubuntu_Sans/UbuntuSans-ThinItalic.ttf') format('truetype');
+    src: url('../assets/fonts/Ubuntu_Sans/UbuntuSans-ThinItalic.ttf') format('truetype');
     font-weight: 100;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Ubuntu Sans';
-    src: url('./assets/fonts/Ubuntu_Sans/UbuntuSans-ExtraLight.ttf') format('truetype');
+    src: url('../assets/fonts/Ubuntu_Sans/UbuntuSans-ExtraLight.ttf') format('truetype');
     font-weight: 200;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Ubuntu Sans';
-    src: url('./assets/fonts/Ubuntu_Sans/UbuntuSans-ExtraLightItalic.ttf') format('truetype');
+    src: url('../assets/fonts/Ubuntu_Sans/UbuntuSans-ExtraLightItalic.ttf') format('truetype');
     font-weight: 200;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Ubuntu Sans';
-    src: url('./assets/fonts/Ubuntu_Sans/UbuntuSans-Light.ttf') format('truetype');
+    src: url('../assets/fonts/Ubuntu_Sans/UbuntuSans-Light.ttf') format('truetype');
     font-weight: 300;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Ubuntu Sans';
-    src: url('./assets/fonts/Ubuntu_Sans/UbuntuSans-LightItalic.ttf') format('truetype');
+    src: url('../assets/fonts/Ubuntu_Sans/UbuntuSans-LightItalic.ttf') format('truetype');
     font-weight: 300;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Ubuntu Sans';
-    src: url('./assets/fonts/Ubuntu_Sans/UbuntuSans-Regular.ttf') format('truetype');
+    src: url('../assets/fonts/Ubuntu_Sans/UbuntuSans-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Ubuntu Sans';
-    src: url('./assets/fonts/Ubuntu_Sans/UbuntuSans-Italic.ttf') format('truetype');
+    src: url('../assets/fonts/Ubuntu_Sans/UbuntuSans-Italic.ttf') format('truetype');
     font-weight: 400;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Ubuntu Sans';
-    src: url('./assets/fonts/Ubuntu_Sans/UbuntuSans-Medium.ttf') format('truetype');
+    src: url('../assets/fonts/Ubuntu_Sans/UbuntuSans-Medium.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Ubuntu Sans';
-    src: url('./assets/fonts/Ubuntu_Sans/UbuntuSans-MediumItalic.ttf') format('truetype');
+    src: url('../assets/fonts/Ubuntu_Sans/UbuntuSans-MediumItalic.ttf') format('truetype');
     font-weight: 500;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Ubuntu Sans';
-    src: url('./assets/fonts/Ubuntu_Sans/UbuntuSans-SemiBold.ttf') format('truetype');
+    src: url('../assets/fonts/Ubuntu_Sans/UbuntuSans-SemiBold.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Ubuntu Sans';
-    src: url('./assets/fonts/Ubuntu_Sans/UbuntuSans-SemiBoldItalic.ttf') format('truetype');
+    src: url('../assets/fonts/Ubuntu_Sans/UbuntuSans-SemiBoldItalic.ttf') format('truetype');
     font-weight: 600;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Ubuntu Sans';
-    src: url('./assets/fonts/Ubuntu_Sans/UbuntuSans-Bold.ttf') format('truetype');
+    src: url('../assets/fonts/Ubuntu_Sans/UbuntuSans-Bold.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Ubuntu Sans';
-    src: url('./assets/fonts/Ubuntu_Sans/UbuntuSans-BoldItalic.ttf') format('truetype');
+    src: url('../assets/fonts/Ubuntu_Sans/UbuntuSans-BoldItalic.ttf') format('truetype');
     font-weight: 700;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'Ubuntu Sans';
-    src: url('./assets/fonts/Ubuntu_Sans/UbuntuSans-ExtraBold.ttf') format('truetype');
+    src: url('../assets/fonts/Ubuntu_Sans/UbuntuSans-ExtraBold.ttf') format('truetype');
     font-weight: 800;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Ubuntu Sans';
-    src: url('./assets/fonts/Ubuntu_Sans/UbuntuSans-ExtraBoldItalic.ttf') format('truetype');
+    src: url('../assets/fonts/Ubuntu_Sans/UbuntuSans-ExtraBoldItalic.ttf') format('truetype');
     font-weight: 800;
     font-style: italic;
 }
