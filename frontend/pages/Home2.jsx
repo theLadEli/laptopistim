@@ -1,22 +1,16 @@
-import { useState, useEffect } from 'react'
-import './App.css'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import { Splide, SplideTrack, SplideSlide } from '@splidejs/react-splide';
-
 // Icons
-import DoubleChevronRight from './assets/double-chevron-right.svg'
-import MapPin from './assets/map-pin.svg'
-import PowerSockets from './assets/power-sockets.svg'
-import Crowdedness from './assets/crowdedness.svg'
-import Clock from './assets/clock.svg'
-import WiFi from './assets/WiFi.svg'
+import DoubleChevronRight from './assets/icons/double-chevron-right.svg'
+import MapPin from './assets/icons/map-pin.svg'
+import PowerSockets from './assets/icons/power-sockets.svg'
+import Crowdedness from './assets/icons/crowdedness.svg'
+import Clock from './assets/icons/clock.svg'
+import WiFi from './assets/icons/WiFi.svg'
 
-// City Imags
-import TelAviv from './assets/cities/tel-aviv.png'
-import Jerusalem from './assets/cities/jerusalem.png'
-import Haifa from './assets/cities/haifa.png'
-import RamatGan from './assets/cities/ramat-gan.png'
+// Images
+import TelAviv from './assets/images/cities/tel-aviv.png'
+import Jerusalem from './assets/images/cities/jerusalem.png'
+import Haifa from './assets/images/cities/haifa.png'
+import RamatGan from './assets/images/cities/ramat-gan.png'
 
 function App() {
 
@@ -52,11 +46,8 @@ function App() {
   }, []);
 
   return (
-
     <>
-      <Navbar />
-
-      <div className="header-container container">
+            <div className="header-container container">
         <header className='column'>
 
           <div className="column title">
@@ -194,10 +185,6 @@ function App() {
 
         </section>
       </div>
-
-      <Footer />
     </>
   )
 }
-
-export default App

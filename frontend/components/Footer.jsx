@@ -1,4 +1,4 @@
-import FooterLogo from '../assets/footer-logo.svg';
+import FooterLogo from '../assets/stacked-logo.svg';
 
 export default function Footer() {
     return (
