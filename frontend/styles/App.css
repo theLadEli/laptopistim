@@ -33,8 +33,8 @@ h3 {
   font-family: 'Outfit';
   font-style: normal;
   font-weight: 500;
-  font-size: 30rem;
-  line-height: 38rem;
+  font-size: 3rem;
+  line-height: 3.8rem;
   color: #000000;
 }
 
@@ -129,6 +129,11 @@ p {
 
 button {
   cursor: pointer;
+}
+
+a {
+  text-decoration: unset;
+  color: unset;
 }
 
 /* Navbar */
@@ -464,6 +469,18 @@ hr {
 
 /* Spots */
 
+#spot-loading {
+  width: 100%;
+  text-align: center;
+  padding: 100px 30px;
+  font-family: 'Funnel Display';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.8rem;
+  line-height: 3.2rem;
+  color: #000000;
+}
+
 #spot-header {
   padding: 80px 12rem;
 }
@@ -578,6 +595,68 @@ hr {
   height: 14px;
   width: 14px;
   border: inset 5px #000000;
+}
+
+#comments {
+  gap: 30px;
+}
+
+.comments-list {
+  gap: 42px;
+}
+
+.cl-comment {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.cl-author-initial {
+  width: 40px;
+  min-width: 40px;
+  max-height: 40px;
+  height: 40px;
+  background: #262626;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Funnel Display';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFFFFF;
+}
+
+.clc-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px 30px;
+  background: #FFFFFF;
+  border-bottom: solid 1px #000000;
+}
+
+.clc-content p {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 32px;
+  color: #000000;
+}
+
+.cl-comment-date {
+  font-family: 'Funnel Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 32px;
+  text-align: right;
+  color: #000000;
+  opacity: 0.65;
 }
 
 /* -------------------------- */

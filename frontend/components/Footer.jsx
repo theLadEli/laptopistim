@@ -14,7 +14,7 @@ export default function Footer() {
                 <div className="footer-links-col fl-small">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a>Home</a></li>
+                        <li><a href='/'>Home</a></li>
                         <li><a>About</a></li>
                         <li><a>Spots</a></li>
                         <li><a>Contribute</a></li>

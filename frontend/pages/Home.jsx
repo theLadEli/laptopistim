@@ -105,46 +105,48 @@ function Home(){
           <SplideTrack>
             {spots.map(spot => (
               <SplideSlide key={spot.id}>
-                <article className="ls-card">
-                  <img src={spot.image} alt={`${spot.name} image`} className='lsc-cover-img' />
-                  <div className='lsc-info'>
-                    <h3>{spot.name}</h3>
-                    <div className="lsci-address">
-                      <img src={MapPin} />
-                      <a href={`https://www.google.com/maps/search/${spot.address}`}>
-                        {spot.address}
-                      </a>
-                    </div>
+                <a className='spot-card-link' href={`/spots/${spot.id}`}>
+                  <article className="ls-card">
+                    <img src={spot.image} alt={`${spot.name} image`} className='lsc-cover-img' />
+                    <div className='lsc-info'>
+                      <h3>{spot.name}</h3>
+                      <div className="lsci-address">
+                        <img src={MapPin} />
+                        <a href={`https://www.google.com/maps/search/${spot.address}`}>
+                          {spot.address}
+                        </a>
+                      </div>
 
-                    {/* Conditional rendering based on feedback type averages */}
-                    <ul className="row">
+                      {/* Conditional rendering based on feedback type averages */}
+                      <ul className="row">
 
-                      {spot.avg_power_sockets_rating >= 3 && (
-                        <li>
-                          <img src={PowerSockets} /> Power sockets
-                        </li>
-                      )}
-                      
-                      {spot.avg_wifi_rating >= 3 && (
-                        <li>
-                          <img src={WiFi} /> WiFi
-                        </li>
-                      )}
-                      
-                      {spot.avg_open_late_rating >= 3 && (
-                        <li>
-                          <img src={Clock} /> Open late
-                        </li>
-                      )}
+                        {spot.avg_power_sockets_rating >= 3 && (
+                          <li>
+                            <img src={PowerSockets} /> Power sockets
+                          </li>
+                        )}
+                        
+                        {spot.avg_wifi_rating >= 3 && (
+                          <li>
+                            <img src={WiFi} /> WiFi
+                          </li>
+                        )}
+                        
+                        {spot.avg_open_late_rating >= 3 && (
+                          <li>
+                            <img src={Clock} /> Open late
+                          </li>
+                        )}
 
-                      {spot.avg_crowdedness_rating >= 3 && (
-                        <li>
-                          <img src={Crowdedness} /> Usually busy
-                        </li>
-                    )}
-                  </ul>
-                </div>
-              </article>
+                        {spot.avg_crowdedness_rating >= 3 && (
+                          <li>
+                            <img src={Crowdedness} /> Usually busy
+                          </li>
+                      )}
+                    </ul>
+                  </div>
+                  </article>
+                </a>
               </SplideSlide>
             ))}
           </SplideTrack>
