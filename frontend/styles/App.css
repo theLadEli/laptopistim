@@ -453,6 +453,71 @@ hr {
   text-decoration: none;
 }
 
+/* Spots */
+
+#spot-header {
+  padding: 80px 12rem;
+}
+
+.spot-cover-img {
+  width: 100%;
+  height: 437px;
+  object-fit: cover;
+}
+
+#spot-details {
+  max-width: 1440px;
+  width: 100%;
+  padding: 30px 12rem;
+  gap: 42px;
+}
+
+.sd-h2 {
+  font-family: 'Funnel Display';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 3rem;
+  line-height: 3.8rem;
+  color: #000000;
+}
+
+.sd-p {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 200;
+  font-size: 20px;
+  line-height: 25px;
+  color: #000000;
+}
+
+#spot-details #about {
+  gap: 10px;
+}
+
+.sd-subheading {
+  gap: 8px;
+  align-items: center;
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 25px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.sd-subheading img {
+  width: 18px;
+  height: 18px;
+}
+
+#community-feedback {
+  gap: 28px;
+}
+
+.cf-title {
+  gap: 10px;
+}
+
 /* -------------------------- */
 /* Multi Device Optimisation */
 /* -------------------------- */

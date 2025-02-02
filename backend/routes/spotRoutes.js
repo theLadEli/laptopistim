@@ -23,7 +23,7 @@ router.get('/latest-spots', async (req, res) => {
     }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/spot/:id', async (req, res) => {
     const {id} = req.params;
 
     try {

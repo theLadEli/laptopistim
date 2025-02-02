@@ -1,7 +1,7 @@
 import Navbar from '../components/Navbar'
 
 function SignUp() {
-    rerturn (
+    return (
         <>
             <Navbar />
         </>
