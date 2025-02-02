@@ -10,7 +10,7 @@ function Navbar() {
 
                 <nav className="row">
                     <li><a href="/">Home</a></li>
-                    <li><a href="#spots">Spots</a></li>
+                    <li><a href="/spots">Spots</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contribute">Contribute</a></li>
                     <li><a href="#contact">Contact</a></li>

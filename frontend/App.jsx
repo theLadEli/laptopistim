@@ -7,8 +7,8 @@ import Footer from './components/Footer'
 
 // Pages
 import Home from './pages/Home';
+import Spots from './pages/Spots'
 import Spot from './pages/Spot';
-import SignUp from './pages/SignUp'
 
 function App() {
 
@@ -17,8 +17,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/spots/" element={<Spots />} />
         <Route path="/spots/:id" element={<Spot />} />
-        <Route path="/sign-up/" element={<SignUp />} />
       </Routes>
       <Footer />
     </Router>

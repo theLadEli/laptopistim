@@ -17,8 +17,8 @@ export default function Footer() {
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href='/'>Home</a></li>
+                        <li><a href='/spots'>Spots</a></li>
                         <li><a>About</a></li>
-                        <li><a>Spots</a></li>
                         <li><a>Contribute</a></li>
                         <li><a>Contact</a></li>
                     </ul>
@@ -36,8 +36,8 @@ export default function Footer() {
 
                 <div className="footer-links-col fl-large">
                     <h4>Newsletter</h4>
-                    <p>Stay in touch</p>
-                    {/* To be added (form) */}
+                    {/* <p>Stay in touch</p> */}
+                    <p style={{ fontStyle: 'italic' }}>[ coming soon ]</p>
                 </div>
 
             </div>
