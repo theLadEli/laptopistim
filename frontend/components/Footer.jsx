@@ -6,7 +6,9 @@ export default function Footer() {
     <div className="footer-container">
     <footer>
             <div className="footer-logo">
-                <img src={FooterLogo} alt="Logo" />
+                <a href="/">
+                    <img src={FooterLogo} alt="Logo" />
+                </a>
             </div>
 
             <div className="footer-links row">

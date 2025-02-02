@@ -4,7 +4,9 @@ function Navbar() {
     return (
         <div className="container">
             <menu>
-                <img src={Logo} alt="Logo" className="logo" />
+                <a href="/">
+                    <img src={Logo} alt="Logo" className="logo" />
+                </a>
 
                 <nav className="row">
                     <li><a href="/">Home</a></li>
