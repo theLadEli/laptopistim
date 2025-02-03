@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 import Cities from '../components/Cities';
 
@@ -20,6 +20,25 @@ export default function Spots() {
         .then(data => setSpots(data))  // Update the 'spots' state with fetched data
         .catch(err => console.error('Error fetching spots:', err));  // Handle errors
     }, []);
+
+    // function SpotsList() {
+    //     const [searchParams, setSearchParams] = useSearchParams();
+
+    //     function handleSortChange(newSort) {
+    //         searchParams.set("sort-by", newSort);
+    //         setSearchParams(searchParams);
+    //     };
+    // }
+
+    // const sortBy = searchParams.get("sort-by") || "newest";
+    // fetch('http://localhost:5200/spots?sort-by=${sortBy}')
+
+    // const [searchParams, setSearchParams] = useSearchParams();
+
+    // const handleSortChange = (newSort) => {
+    //     searchParams.set("sort-by", newSort);
+    //     setSearchParams(searchParams);
+    // };
 
     return (
     <>
@@ -47,6 +66,11 @@ export default function Spots() {
             <section id="all-spots" className='row'>
 
                 <div id="as-filter" className="column">
+
+                    {/* FILTER BUTTONS */}
+                        {/* <button onClick={() => handleSortChange("newest")}>Sort by Newest</button> */}
+                        {/* <button onClick={() => handleSortChange("highest-rated")}>Sort by Rating</button> */}
+                    {/* END FILTER BUTTONS */}
 
                 </div>
 
@@ -77,9 +101,7 @@ export default function Spots() {
                                             <h3>{spot.name}</h3>
                                             <div className="lsci-address">
                                                 <img src={MapPin} />
-                                                <a href={`https://www.google.com/maps/search/${spot.address}`}>
-                                                    {spot.address}
-                                                </a>
+                                                {spot.address}
                                             </div>
                                         </div>
 

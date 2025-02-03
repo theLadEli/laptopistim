@@ -1,9 +1,5 @@
 import db from '../config/database.js';
 
-// export async function getAllSpots() {
-//     return await db('spots').select('*');
-// };
-
 export async function getAllSpots() {
     return await db('spots')
         .select(
@@ -18,4 +14,11 @@ export async function getAllSpots() {
         .leftJoin('feedback_type', 'feedback.type', 'feedback_type.id')  // Join with feedback_type
         .groupBy('spots.id')  // Group by spot
         .orderBy('spots.created_at', 'desc');  // Show newest spots first
+        // .modify((queryBuilder) => {
+        //     if (sortBy === "newest") {
+        //         queryBuilder.orderBy("spots.created_at", "desc");
+        //     } else if (sortBy === "highest-rated") {
+        //         queryBuilder.orderBy("avg_wifi_rating", "desc"); // Or another rating metric
+        //     }
+        // })
 }

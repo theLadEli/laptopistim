@@ -367,7 +367,7 @@ hr {
   margin-bottom: 26px;
 }
 
-.lsci-address a {
+.lsci-address {
   font-family: 'Outfit';
   font-style: normal;
   font-weight: 300;
@@ -730,8 +730,6 @@ hr {
   height: 100%;
 }
 
-
-
 .assc-content {
   padding: 40px 50px;
   width: 100%;
@@ -759,6 +757,17 @@ hr {
   line-height: 2.3rem;
   color: #000000;
 }
+
+/* Login */
+
+#login {
+  max-width: 1440px;
+  width: 100%;
+  padding: 30px 12rem;
+  gap: 30px;
+}
+
+
 
 /* -------------------------- */
 /* Multi Device Optimisation */
