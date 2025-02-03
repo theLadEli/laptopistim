@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-function Preferences() {
+function Account() {
+
+    function signOut() {
+        localStorage.clear();
+        window.location.href = '/';
+    }
 
     return (
     <>
@@ -8,17 +13,19 @@ function Preferences() {
             <header className='column'>
 
                 <div className="column title">
-                    <h1>Preferences</h1>
+                    <h1>Account</h1>
 
                     <div className="row subtitle">
                         <hr/>
                         <h5>update your details here</h5>
                     </div>
                 </div>
+
+                <button className='secondary' onClick={signOut}>Sign Out</button>
             </header>
         </div>
     </>
 )   ;
 }
 
-export default Preferences;
+export default Account;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import useToken from './scripts/useToken';
 
 // Components
 import Navbar from './components/Navbar'
@@ -9,38 +10,26 @@ import Footer from './components/Footer'
 import Home from './pages/Home';
 import Spots from './pages/Spots'
 import Spot from './pages/Spot';
-import Dashboard from './pages/Dashboard';
-import Preferences from './pages/Preferences';
+
+import Account from './pages/Account';
 import Login from './pages/Login';
-
-
-function setToken(userToken){
-  sessionStorage.setItem('token', JSON.stringify(userToken));
-}
-
-function getToken(){
-
-}
+import Register from './pages/Register';
 
 function App() {
 
-  const token = getToken()
-  
-
-  if(!token) {
-    return <Login setToken={setToken} />
-  }
+  const { token, setToken } = useToken()
 
   return (
     <Router>
-      <Navbar />
+      <Navbar token={token} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/spots/" element={<Spots />} />
         <Route path="/spots/:id" element={<Spot />} />
-        <Route path="/dashboard/" element={<Dashboard />} />
-        <Route path="/preferences/" element={<Preferences />} />
-        <Route path="/login/" element={<Login />} />
+
+        <Route path="/account/" element={token ? <Account /> : <Login setToken={setToken}  />} />
+        <Route path="/login/" element={token ? <Navigate to="/account" /> : <Login setToken={setToken} />} />
+        <Route path="/register/" element={token ? <Navigate to="/account" /> : <Register setToken={setToken} />} />
       </Routes>
       <Footer />
     </Router>

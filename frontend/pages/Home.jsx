@@ -90,9 +90,7 @@ function Home(){
                       <h3>{spot.name}</h3>
                       <div className="lsci-address">
                         <img src={MapPin} />
-                        <a href={`https://www.google.com/maps/search/${spot.address}`}>
-                          {spot.address}
-                        </a>
+                        {spot.address}
                       </div>
 
                       {/* Conditional rendering based on feedback type averages */}

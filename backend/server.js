@@ -19,10 +19,10 @@ app.use(cors());
 app.use(express.json());
 
 // Route: login
-app.use('/login', async (req, res) => {
+app.post('/login', async (req, res) => {
 
     try {
-        res.send({
+        res.json({
             token: 'test123'
         });
     } catch(error) {

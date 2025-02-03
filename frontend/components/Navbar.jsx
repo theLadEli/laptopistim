@@ -1,6 +1,6 @@
 import Logo from "../assets/logo.svg";
 
-function Navbar() {
+function Navbar({ token }) {
     return (
         <div className="container">
             <menu>
@@ -15,8 +15,12 @@ function Navbar() {
                     <li><a href="#contribute">Contribute</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </nav>
-
-                <button className="primary">Register</button>
+                
+                {token ? 
+                    <button onClick={() => window.location.href = '/account'} className="primary" >Account</button>
+                    
+                    : <button onClick={() => window.location.href = '/register'} className="primary" >Register</button>
+                }
             </menu>
         </div>
     )
