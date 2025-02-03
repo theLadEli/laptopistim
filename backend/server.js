@@ -1,9 +1,15 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 import spotRoutes from './routes/spotRoutes.js';
 import cityRoutes from './routes/cityRoutes.js';
+import login from './controllers/login.js';
+import register from './controllers/register.js';
+import account from './controllers/account.js'
+
 
 // Load environment variables
 dotenv.config({ path: './config/.env' });
@@ -11,7 +17,6 @@ dotenv.config({ path: './config/.env' });
 const app = express();
 const PORT = process.env.PORT || 5200;
 
-const router = express.Router();
 // Allow requests from your frontend
 app.use(cors());
 
@@ -19,19 +24,13 @@ app.use(cors());
 app.use(express.json());
 
 // Route: login
-app.post('/login', async (req, res) => {
+app.post('/login', login);
 
-    try {
-        res.json({
-            token: 'test123'
-        });
-    } catch(error) {
-        res.status(500).json({ error: 'Error sending token' });
-    }
+// Route: register
+app.post('/register', register);
 
-});
-
-export default router;
+// Route: register
+app.use('/account', account);
 
 // Route: spots
 app.use('/spots', spotRoutes);
