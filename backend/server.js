@@ -1,15 +1,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 
 import spotRoutes from './routes/spotRoutes.js';
 import cityRoutes from './routes/cityRoutes.js';
-
-import login from './controllers/login.js';
-import register from './controllers/register.js';
-import account from './controllers/account.js';
+import authRoutes from './routes/authRoutes.js';
+import account from './routes/account.js';
 
 // Load environment variables
 dotenv.config({ path: './config/.env' });
@@ -23,14 +19,10 @@ app.use(cors());
 // Middleware
 app.use(express.json());
 
-// // Route: login
-app.post('/login', login);
+// // Route: auth
+app.use('/auth', authRoutes);
 
-// // Route: register
-app.post('/register', register);
-
-
-// // Route: register
+// // Route: account
 app.use('/account', account);
 
 // Route: spots

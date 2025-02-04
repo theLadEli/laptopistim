@@ -22,9 +22,16 @@ function Account() {
             </header>
         </div>
 
-        <div className="container">
-            <p>Email: {user?.email}</p>
-            {/* Content */}
+        <div className="container column">
+            <h2>Account Details</h2>
+            {user ?
+                <>
+                    <p>Welcome {user.firstName}!</p>
+                    <p>{user.email}</p>
+                </>
+                :
+                <p>Loading...</p>
+            }
         </div>
     </>
 )   ;

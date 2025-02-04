@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext(null);
-
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
@@ -9,11 +8,12 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
-        console.log("Checking localStorage for token..."); // 🛠 Debug log
         const token = localStorage.getItem("token");
         if (token) {
-            console.log("Token found:", token); // 🛠 Debug log
             fetchUserDetails(token);
+        } else {
+            console.log('No token found in local storage')
+            setIsAuthenticated(false);
         }
     }, []);
 
@@ -24,24 +24,44 @@ export const AuthProvider = ({ children }) => {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
-            if (response.ok) {
-                const userData = await response.json();
-                console.log("User data fetched:", userData); // 🛠 Debug log
-                setUser(userData);
-                setIsAuthenticated(true);
-            } else {
-                console.warn("Invalid token, clearing storage"); // 🛠 Debug log
-                setIsAuthenticated(false);
-                setUser(null);
-                localStorage.removeItem("token");
+            if (!response.ok) {
+                throw new Error(`Error ${response.status}: ${response.statusText}`);
             }
-        } catch (err) {
-            console.error("Error fetching user details:", err);
+    
+            const data = await response.json();
+            console.log("User data:", data);
+            setUser(data);
+            setIsAuthenticated(true);
+        } catch (error){
+            console.error("Fetch error:", error);
         }
     };
 
+    const login = async (email, password) => {
+        const response = await fetch("http://localhost:5200/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const data = await response.json();
+        if (response.ok && data.token) {
+            localStorage.setItem("token", data.token);
+            setUser({ id: data.userId });
+            setIsAuthenticated(true);
+            window.location.href = "/account";
+        }
+    };
+
+    const logout = () => {
+        localStorage.removeItem("token");
+        setUser(null);
+        setIsAuthenticated(false);
+        window.location.href = "/";
+    };
+
     return (
-        <AuthContext.Provider value={{ user, isAuthenticated, setUser }}>
+        <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
             {children}
         </AuthContext.Provider>
     );

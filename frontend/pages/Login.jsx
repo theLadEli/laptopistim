@@ -1,39 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useAuth } from "../AuthContext";
 
 export default function Login() {
     const { login } = useAuth();
-    
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    
-    const handleSubmit = async form => {
-        form.preventDefault();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState(null);
 
-        try {
-            const response = await fetch('http://localhost:5200/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
-            })
-
-            const data = await response.json();
-
-            if (response.ok && data.token) {
-                console.log("Saving token:", data.token); // 🛠 Debug log
-                localStorage.setItem("token", data.token);
-                setUser(data.user);
-                setIsAuthenticated(true);
-                window.location.href = '/account';
-            } else {
-                console.error("Login failed:", data.message);
-            }
-        } catch (err) {
-            console.log(err)
-            setError('Server error', err);
-        }
-    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await login(email, password);
+    };
 
     return (
     <>
@@ -66,7 +43,6 @@ export default function Login() {
 
                     <input type="submit" value="Submit" className='primary' />
 
-                    {error && <p>{error}</p>}
                 </form>
             </section>
         </div>
