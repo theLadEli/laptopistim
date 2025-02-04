@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import useToken from './scripts/useToken';
+import { useAuth } from "./AuthContext";
 
 // Components
 import Navbar from './components/Navbar'
@@ -11,25 +11,25 @@ import Home from './pages/Home';
 import Spots from './pages/Spots'
 import Spot from './pages/Spot';
 
-import Account from './pages/Account';
-import Login from './pages/Login';
 import Register from './pages/Register';
+import Login from './pages/Login';
+import Account from './pages/Account';
 
 function App() {
-
-  const { token, setToken } = useToken()
+  const { isAuthenticated } = useAuth();
 
   return (
     <Router>
-      <Navbar token={token} />
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/spots/" element={<Spots />} />
         <Route path="/spots/:id" element={<Spot />} />
 
-        <Route path="/account/" element={token ? <Account /> : <Login setToken={setToken}  />} />
-        <Route path="/login/" element={token ? <Navigate to="/account" /> : <Login setToken={setToken} />} />
-        <Route path="/register/" element={token ? <Navigate to="/account" /> : <Register setToken={setToken} />} />
+        <Route path="/register/" element={<Register />} />
+        <Route path="/login/" element={<Login />} />
+        <Route path="/account" element={<Account />} />
+        {/* <Route path="/account" element={isAuthenticated ? <Account /> : <Navigate to="/login" />} /> */}
       </Routes>
       <Footer />
     </Router>

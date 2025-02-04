@@ -1,6 +1,9 @@
+import { useAuth } from "../AuthContext";
 import Logo from "../assets/logo.svg";
 
-function Navbar({ token }) {
+function Navbar() {
+    const { isAuthenticated } = useAuth();
+
     return (
         <div className="container">
             <menu>
@@ -16,11 +19,9 @@ function Navbar({ token }) {
                     <li><a href="#contact">Contact</a></li>
                 </nav>
                 
-                {token ? 
-                    <button onClick={() => window.location.href = '/account'} className="primary" >Account</button>
-                    
-                    : <button onClick={() => window.location.href = '/register'} className="primary" >Register</button>
-                }
+                {isAuthenticated ? <button onClick={() => window.location.href = '/account'} className="primary" >Account</button> 
+                : <button onClick={() => window.location.href = '/register'} className="primary" >Register</button>}
+
             </menu>
         </div>
     )

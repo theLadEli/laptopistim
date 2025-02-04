@@ -1,30 +1,30 @@
-import dotenv from 'dotenv';
-import jwt from 'jsonwebtoken';
-import db from '../config/database.js';
-
-dotenv.config({ path: '../config/.env' });
+import jwt from "jsonwebtoken";
+import db from "../config/database.js";
 
 export default async function account(req, res) {
-  const token = req.headers['authorization']?.split(' ')[1];
+    // 1️⃣ Get the token from headers
+    const authHeader = req.headers.authorization;
 
-  if (!token) {
-    return res.status(401).json({ error: 'No token provided' });
-  }
-
-  try {
-    // Verify JWT token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const userId = decoded.userId;
-
-    // Get user details
-    const user = await db('users').where('id', userId).first();
-
-    if (user) {
-      res.json(user);
-    } else {
-      res.status(404).json({ error: 'User not found' });
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        return res.status(401).json({ error: "Unauthorized: No token provided" });
     }
-  } catch (err) {
-    res.status(500).json({ error: 'Error fetching account details' });
-  }
+
+    const token = authHeader.split(" ")[1];
+
+    try {
+        // 2️⃣ Decrypt the token
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const userId = decoded.userId;
+
+        // 3️⃣ Fetch user details from DB
+        const user = await db("users").where({ id: userId }).select("id", "firstName", "lastName", "email").first();
+
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        res.json(user);
+    } catch (error) {
+        return res.status(403).json({ error: "Forbidden: Invalid token" });
+    }
 };

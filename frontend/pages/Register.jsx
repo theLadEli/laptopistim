@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { registerUser } from '../scripts/userManagement';
+import { useAuth } from "../AuthContext";
 
-function Register({setToken}) {
+function Register() {
+    const { login } = useAuth();
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -16,17 +17,28 @@ function Register({setToken}) {
         setError('');
 
         try {
-            const token = await registerUser({ firstName, lastName, email, phone, city, password });
-            setToken(token);
-        } catch(error) {
-            setError(error.message)
+            const response = await fetch('http://localhost:5200/register', {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ firstName, lastName, email, phone, city, password })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                login(data.token);
+                window.location.href = '/account';
+            } else {
+                setError(data.error || 'Error registering user');
+            }
+
+        } catch (err) {
+            setError('Server error');
         }
     }
 
-
     return (
     <>
-
         <div className="header-container container">
             <section className='column reg-header'>
 
@@ -45,7 +57,6 @@ function Register({setToken}) {
 
         <div className="container">
             <section id="login">
-                {error && <p style={{ color: 'red' }}>{error}</p>}
                 <form onSubmit={handleSubmit} className='column'>
 
 
@@ -86,6 +97,8 @@ function Register({setToken}) {
 
                     <input type="submit" value="Submit" className='primary' />
                 </form>
+
+                {error && <p style={{ color: "red" }}>{error}</p>}
             </section>
         </div>
     </>

@@ -12,13 +12,6 @@ export async function getAllSpots() {
         )
         .leftJoin('feedback', 'spots.id', 'feedback.spot')  // Join with feedback table
         .leftJoin('feedback_type', 'feedback.type', 'feedback_type.id')  // Join with feedback_type
-        .groupBy('spots.id')  // Group by spot
+        .groupBy('spots.id')  // Group by spot ID
         .orderBy('spots.created_at', 'desc');  // Show newest spots first
-        // .modify((queryBuilder) => {
-        //     if (sortBy === "newest") {
-        //         queryBuilder.orderBy("spots.created_at", "desc");
-        //     } else if (sortBy === "highest-rated") {
-        //         queryBuilder.orderBy("avg_wifi_rating", "desc"); // Or another rating metric
-        //     }
-        // })
 }

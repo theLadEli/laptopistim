@@ -3,34 +3,32 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import db from '../config/database.js';
 
-dotenv.config({ path: '../config/.env' });
+dotenv.config({ path: './config/.env' });
+const JWT_SECRET = process.env.JWT_SECRET;
 
-export default async function login(req, res) {
+export default async function login (req,res) {
     const { email, password } = req.body;
-    console.log('Login attempt:', email)
 
     try {
-        // Find user by email
-        const user = await db('users').where('email', email).first();
-
+        // Get user from DB
+        const user = await db('users').select('*').where('email', email).first();
         if (!user) {
-            console.log('User not found:', email);
-            return res.status(401).json({ error: 'User not found.' });
+            return res.status(400).json({ error: "User email not found" });
         }
 
-        const passwordMatch = await bcrypt.compare(password, user.password);
-        if (!passwordMatch) {
-            console.log('Incorrect password for:', email);
-            return res.status(401).json({ error: 'Incorrect password.' });
+        // Compare password
+        const validPassword = await bcrypt.compare(password, user.password);
+        if (!validPassword) {
+            return res.status(400).json({ error: "Invalid password" });
         }
 
-        const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '7d' });
-        console.log('User authenticated:', email);
+        // Generate token
+        const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: '7d' });
 
-        res.json(token);
-    } catch(error) {
-        console.error('Error during login:', error);
-        res.status(500).json({ error: 'Server error' });
+        res.json({ token });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" });
     }
-
-}
+};

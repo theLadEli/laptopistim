@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import userManagement from '../scripts/userManagement';
+import { useAuth } from "../AuthContext";
 
-export default function Login({setToken}) {
+export default function Login() {
+    const { login } = useAuth();
+    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -10,42 +11,27 @@ export default function Login({setToken}) {
     const handleSubmit = async form => {
         form.preventDefault();
 
-        const credentials = {email, password};        
-
         try {
             const response = await fetch('http://localhost:5200/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(credentials),
-            });
-            
-            const token = await response.text();
-            console.log('Login response:', token);
-            
-            if (!response.ok) {
-                console.error("Response not OK:", response.status, response.statusText);
-                setError('Invalid email or password');
-                return;
-            }
-    
-            if (!token) {
-                console.error("No token received:", token);
-                setError('Login failed: No token received.');
-                return;
-            }
+                body: JSON.stringify({ email, password })
+            })
 
-            console.log("Token received! Storing now...");
+            const data = await response.json();
 
-            setToken({ token });
-            localStorage.setItem('token', JSON.stringify({ token }));
-    
-            console.log("Token stored successfully. Redirecting...");
-            window.location.href = '/account';
-    
-            
-        } catch(error) {
-            console.error('Login error:', error);
-            setError('Login failed. Please try again.');
+            if (response.ok && data.token) {
+                console.log("Saving token:", data.token); // 🛠 Debug log
+                localStorage.setItem("token", data.token);
+                setUser(data.user);
+                setIsAuthenticated(true);
+                window.location.href = '/account';
+            } else {
+                console.error("Login failed:", data.message);
+            }
+        } catch (err) {
+            console.log(err)
+            setError('Server error', err);
         }
     }
 
@@ -87,8 +73,4 @@ export default function Login({setToken}) {
 
     </>
 )   ;
-}
-
-Login.propTypes = {
-    setToken: PropTypes.func.isRequired
 }

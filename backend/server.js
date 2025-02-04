@@ -6,10 +6,10 @@ import jwt from 'jsonwebtoken';
 
 import spotRoutes from './routes/spotRoutes.js';
 import cityRoutes from './routes/cityRoutes.js';
+
 import login from './controllers/login.js';
 import register from './controllers/register.js';
-import account from './controllers/account.js'
-
+import account from './controllers/account.js';
 
 // Load environment variables
 dotenv.config({ path: './config/.env' });
@@ -23,13 +23,14 @@ app.use(cors());
 // Middleware
 app.use(express.json());
 
-// Route: login
+// // Route: login
 app.post('/login', login);
 
-// Route: register
+// // Route: register
 app.post('/register', register);
 
-// Route: register
+
+// // Route: register
 app.use('/account', account);
 
 // Route: spots

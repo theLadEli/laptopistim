@@ -1,43 +1,41 @@
-import db from '../config/database.js';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import db from '../config/database.js';
 
-dotenv.config({ path: '../config/.env' });
+dotenv.config({ path: './config/.env' });
+const JWT_SECRET = process.env.JWT_SECRET;
 
-export default async function register(req, res) {
-    const JWT_SECRET_KEY = process.env.JWT_SECRET;
-    
+export default async function register (req, res) {
     const { firstName, lastName, email, phone, city, password } = req.body;
 
     try {
-
-        // check if the user exists
-        const existingUser = await db('users').where({ email }).first();
-        if (existingUser) {
-            return res.status(400).json({ error: 'User already exists' });
+        // Check if user exists
+        const existingUser = await db('users').select('*').where('email',email);
+        
+        if (existingUser.length > 0) {
+            return res.status(400).json({ error: "Email already in use" });
         }
 
-        // hash the password
+        // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // register the user
-        const [userId] = await db('users')
-            .insert({
-                first_name: firstName,
-                last_name: lastName,
-                email,
-                phone,
-                city,
-                password: hashedPassword
-            }).returning('id');
-        
-        // generate a token
-        const token = jwt.sign({ userId }, JWT_SECRET_KEY, { expiresIn: '7d' });
-        
-        res.status(201).json({ token });
-    } catch(error) {
-        console.error("Error registering user:", error);
-        res.status(500).json({ error: 'Internal server error' });
+        // Save user to database
+        const newUser = await db('users').insert({
+            first_name: firstName,
+            last_name: lastName,
+            email,
+            phone,
+            city,
+            password: hashedPassword,
+        },['id'])
+
+        // Generate token
+        const token = jwt.sign({ userId: newUser.id }, JWT_SECRET, { expiresIn: '7d' });
+
+        res.json({ token });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Server error" });
     }
-}
+};
