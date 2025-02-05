@@ -11,7 +11,6 @@ import Clock from '../assets/icons/clock.svg'
 import WiFi from '../assets/icons/WiFi.svg'
 
 function Home(){
-
   const [spots, setSpots] = useState([]);
 
   useEffect(() => {

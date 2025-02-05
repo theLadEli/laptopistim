@@ -17,7 +17,7 @@ function Register() {
         setError('');
 
         try {
-            const response = await fetch('http://localhost:5200/register', {
+            const response = await fetch('http://localhost:5200/auth/register', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ firstName, lastName, email, phone, city, password })
@@ -26,8 +26,7 @@ function Register() {
             const data = await response.json();
 
             if (response.ok) {
-                login(data.token);
-                window.location.href = '/account';
+                login(email, password);
             } else {
                 setError(data.error || 'Error registering user');
             }

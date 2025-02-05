@@ -26,10 +26,9 @@ function App() {
         <Route path="/spots/" element={<Spots />} />
         <Route path="/spots/:id" element={<Spot />} />
 
-        <Route path="/register/" element={<Register />} />
-        <Route path="/login/" element={<Login />} />
-        <Route path="/account" element={<Account />} />
-        {/* <Route path="/account" element={isAuthenticated ? <Account /> : <Navigate to="/login" />} /> */}
+        <Route path="/register/" element={isAuthenticated ? <Navigate to="/account" /> : <Register />} />
+        <Route path="/login/"  element={isAuthenticated ? <Navigate to="/account" /> : <Login />} />
+        <Route path="/account" element={isAuthenticated ? <Account /> : <Navigate to="/login" />} />
       </Routes>
       <Footer />
     </Router>

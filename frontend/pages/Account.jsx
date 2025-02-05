@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../AuthContext';
 
 function Account() {
-    const { isAuthenticated, user, logout } = useAuth();
+    const { user, logout } = useAuth();
 
     return (
     <>

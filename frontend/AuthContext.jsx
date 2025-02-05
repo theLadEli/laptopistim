@@ -5,14 +5,14 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false); 
 
     useEffect(() => {
         const token = localStorage.getItem("token");
         if (token) {
             fetchUserDetails(token);
         } else {
-            console.log('No token found in local storage')
+            // console.log('No token found in local storage')
             setIsAuthenticated(false);
         }
     }, []);
@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
             }
     
             const data = await response.json();
-            console.log("User data:", data);
+            // console.log("User data:", data);
             setUser(data);
             setIsAuthenticated(true);
         } catch (error){
@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem("token", data.token);
             setUser({ id: data.userId });
             setIsAuthenticated(true);
-            window.location.href = "/account";
+            // window.location.href = "/account";
         }
     };
 

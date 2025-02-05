@@ -136,6 +136,7 @@ button {
 a {
   text-decoration: unset;
   color: unset;
+  cursor: pointer;
 }
 
 /* Navbar */
