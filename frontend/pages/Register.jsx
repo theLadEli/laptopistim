@@ -10,11 +10,14 @@ function Register() {
     const [phone, setPhone] = useState('');
     const [city, setCity] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
     async function handleSubmit(e) {
         e.preventDefault();
         setError('');
+
+        if (password != confirmPassword) return setError('Password confirmation incorrect.')
 
         try {
             const response = await fetch('http://localhost:5200/auth/register', {
@@ -89,10 +92,10 @@ function Register() {
                         <input required type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                     </label>
 
-                    {/* <label>
+                    <label>
                         Confirm Password
-                        <input required type="password" />
-                    </label> */}
+                        <input required type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+                    </label>
 
                     <input type="submit" value="Submit" className='primary' />
                     {error && <p style={{ color: "red" }}>{error}</p>}
