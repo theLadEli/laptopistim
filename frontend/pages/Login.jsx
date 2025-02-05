@@ -47,12 +47,12 @@ export default function Login() {
                     </label>
 
                     <input type="submit" value="Submit" className='primary' />
+                    {error && <p style={{ color: "red" }}>{error}</p>}
                 </form>
 
-                {error && <p style={{ color: "red" }}>{error}</p>}
             </section>
         </div>
 
     </>
-)   ;
+    );
 }

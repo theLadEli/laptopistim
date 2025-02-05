@@ -49,7 +49,8 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem("token", data.token);
             setUser({ id: data.userId });
             setIsAuthenticated(true);
-            // window.location.href = "/account";
+        } else {
+            throw new Error(data.message)
         }
     };
 

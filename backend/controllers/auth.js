@@ -11,20 +11,23 @@ export const login = async (req, res) => {
 
     try {
         const user = await db("users").where({ email }).first();
+        console.log(user)
+
         if (!user) {
-            // res.status(401).json({ message: "No account found with this email." })
-            throw new Error("no accnt with this email")
+            throw new Error("No account found with this email.")
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) return res.status(401).json({ message: "Incorrect password. Try again." });
+        if (!isMatch) {
+            throw new Error("Incorrect password. Try again.")
+        }
 
         const token = jwt.sign({ userId: user.id }, SECRET_KEY, { expiresIn: "7d" });
 
         res.json({ token, userId: user.id });
     } catch (error) {
-        throw error;
-        // res.status(500).json({ message: "Server error" });
+        console.error("Login error:", error.message);
+        res.status(401).json({ message: error.message });
     }
 };
 
