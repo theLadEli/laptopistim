@@ -96,6 +96,8 @@ p {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  max-width: 500px;
+
   padding: 0.8rem 2.4rem;
   gap: 10px;
   background: #262626;
@@ -115,6 +117,8 @@ p {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  max-width: 500px;
+  
   gap: 10px;
   padding: 0.8rem 2.4rem;
   border: 2px solid #262626;
@@ -821,7 +825,7 @@ hr {
 }
 
 #login form {
-  max-width: 400px;
+  max-width: 500px;
   gap: 20px;
 }
 

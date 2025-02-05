@@ -28,7 +28,7 @@ function Register() {
             if (response.ok) {
                 login(email, password);
             } else {
-                setError(data.error || 'Error registering user');
+                setError(data?.message);
             }
 
         } catch (err) {
@@ -42,7 +42,7 @@ function Register() {
             <section className='column reg-header'>
 
                 <div className="column title">
-                    <h1>Login</h1>
+                    <h1>Register</h1>
 
                     <div className="row subtitle">
                         <hr/>
@@ -50,7 +50,7 @@ function Register() {
                     </div>
 
                 </div>
-                <button className="primary" onClick={() => window.location.href = '/login'}>Got an account? Login</button>
+                <a className="primary" href="/login">Got an account? Login</a>
             </section>
         </div>
 
@@ -95,9 +95,9 @@ function Register() {
                     </label> */}
 
                     <input type="submit" value="Submit" className='primary' />
+                    {error && <p style={{ color: "red" }}>{error}</p>}
                 </form>
 
-                {error && <p style={{ color: "red" }}>{error}</p>}
             </section>
         </div>
     </>

@@ -11,16 +11,20 @@ export const login = async (req, res) => {
 
     try {
         const user = await db("users").where({ email }).first();
-        if (!user) return res.status(401).json({ message: "User email not found" });
+        if (!user) {
+            // res.status(401).json({ message: "No account found with this email." })
+            throw new Error("no accnt with this email")
+        }
 
         const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) return res.status(401).json({ message: "Invalid password" });
+        if (!isMatch) return res.status(401).json({ message: "Incorrect password. Try again." });
 
         const token = jwt.sign({ userId: user.id }, SECRET_KEY, { expiresIn: "7d" });
 
         res.json({ token, userId: user.id });
     } catch (error) {
-        res.status(500).json({ message: "Server error" });
+        throw error;
+        // res.status(500).json({ message: "Server error" });
     }
 };
 
@@ -29,6 +33,12 @@ export const register = async (req, res) => {
 
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
+
+        const existingUser = await db("users").where({email}).first();
+        if(existingUser) {            
+            return res.status(401).json({message: "Email already in use. Try logging in."})
+        }
+
         const [userId] = await db("users").insert({
             first_name: firstName,
             last_name: lastName,
@@ -41,6 +51,7 @@ export const register = async (req, res) => {
         const token = jwt.sign({ userId }, SECRET_KEY, { expiresIn: "7d" });
         res.json({ token, userId });
     } catch (error) {
+        console.log(error.message)
         res.status(500).json({ message: "Server error" });
     }
 };

@@ -8,8 +8,12 @@ export default function Login() {
     const [error, setError] = useState(null);
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        await login(email, password);
+        try {
+            e.preventDefault();
+            await login(email, password);
+        } catch(error) {
+            setError(error.message)
+        }
     };
 
     return (
@@ -22,9 +26,10 @@ export default function Login() {
 
                     <div className="row subtitle">
                         <hr/>
-                        <h5>join the community</h5>
+                        <h5>share your experience</h5>
                     </div>
                 </div>
+                <a className="primary" href="/register">Not yet registered? Sign Up</a>
             </section>
         </div>
 
@@ -42,8 +47,9 @@ export default function Login() {
                     </label>
 
                     <input type="submit" value="Submit" className='primary' />
-
                 </form>
+
+                {error && <p style={{ color: "red" }}>{error}</p>}
             </section>
         </div>
 
