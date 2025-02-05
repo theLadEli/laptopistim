@@ -1,5 +1,4 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import cors from 'cors';
 
 import spotRoutes from './routes/spotRoutes.js';
@@ -7,11 +6,8 @@ import cityRoutes from './routes/cityRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import account from './routes/account.js';
 
-// Load environment variables
-dotenv.config({ path: './config/.env' });
-
 const app = express();
-const PORT = process.env.PORT || 5200;
+const PORT = 5200;
 
 // Allow requests from your frontend
 app.use(cors());

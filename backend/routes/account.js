@@ -4,15 +4,11 @@ import verifyToken from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-// router.get("/", verifyToken, account);
 router.get("/", verifyToken, async (req, res) => {
     try {
-        console.log("User ID from token:", req.user.userId);
         const user = await db("users").where({ id: req.user.userId}).first();
-        
         if (!user) return res.status(404).json({ error: "User not found" });
 
-        console.log(user)
         res.json({ 
             id: user.id,
             email: user.email,

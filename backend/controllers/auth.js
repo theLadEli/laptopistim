@@ -39,7 +39,6 @@ export const register = async (req, res) => {
         }).returning("id");
 
         const token = jwt.sign({ userId }, SECRET_KEY, { expiresIn: "7d" });
-
         res.json({ token, userId });
     } catch (error) {
         res.status(500).json({ message: "Server error" });

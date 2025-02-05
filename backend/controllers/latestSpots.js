@@ -26,7 +26,7 @@ export default async function getLatestSpots() {
 
         return spotsWithFeedback;
     } catch (error) {
-        console.error("Error fetching latest spots:", error);  // Log detailed error
+        console.error("Error fetching latest spots:", error);
         throw new Error('Error fetching latest spots');
     }
 }

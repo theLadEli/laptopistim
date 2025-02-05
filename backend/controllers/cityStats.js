@@ -10,7 +10,7 @@ export default async function getCities(){
         .count('spots.id as spots_count')
         .groupBy('cities.id')   
     } catch (error) {
-        console.error("Error fetching city stats:", error);  // Log the error to the console for debugging
+        console.error("Error fetching city stats:", error);
         throw new Error('Error fetching city stats');
     }
     
