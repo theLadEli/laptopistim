@@ -36,8 +36,7 @@ export default function Footer() {
 
                 <div className="footer-links-col fl-large">
                     <h4>Newsletter</h4>
-                    {/* <p>Stay in touch</p> */}
-                    <p style={{ fontStyle: 'italic' }}>[ coming soon ]</p>
+                    <div className="klaviyo-form-RKWyS3"></div>
                 </div>
 
             </div>

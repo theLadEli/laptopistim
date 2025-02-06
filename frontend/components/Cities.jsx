@@ -23,55 +23,55 @@ export default function Cities() {
         const foundCity = cities.find(city => city.name.toLowerCase() === cityName.toLowerCase());
 
         // If the city is found, return its spots_count, otherwise return null
-        return foundCity ? foundCity.spots_count : 'pending';
+        return foundCity ? (`${foundCity.spots_count} spots`) : 'pending';
     }
 
     return (
         <div className="city-row row">
 
-            <div className="city-card row">
-                <img className='city-img' src={TelAviv} alt='Tel Aviv image' />
-                <div className="city-info column">
-                <h3 className='cc-city-name'>Tel Aviv</h3>
-                <div className="city-stats row">
-                    <img src={MapPin} />
-                    {countCitySpots('tel aviv')} spots
-                </div>
-                </div>
-            </div>
+            <a className="city-card row" href='/cities/tel-aviv'>
+                    <img className='city-img' src={TelAviv} alt='Tel Aviv image' />
+                    <div className="city-info column">
+                        <h3 className='cc-city-name'>Tel Aviv</h3>
+                        <div className="city-stats row">
+                            <img src={MapPin} />
+                            {countCitySpots('tel aviv')}
+                        </div>
+                    </div>
+            </a>
 
-            <div className="city-card row">
+            <a className="city-card row" href='/cities/jerusalem'>
                 <img className='city-img' src={Jerusalem} alt='jerusalem image' />
                 <div className="city-info column">
                 <h3 className='cc-city-name'>Jerusalem</h3>
                 <div className="city-stats row">
                     <img src={MapPin} />
-                    {countCitySpots('jerusalem')} spots
+                    {countCitySpots('jerusalem')}
                 </div>
                 </div>
-            </div>
+            </a>
 
-            <div className="city-card row">
+            <a className="city-card row" href='/cities/ramat-gan'>
                 <img className='city-img' src={RamatGan} alt='ramat gan image' />
                 <div className="city-info column">
                 <h3 className='cc-city-name'>Ramat Gan</h3>
                 <div className="city-stats row">
                     <img src={MapPin} />
-                    {countCitySpots('ramat gan')} spots
+                    {countCitySpots('ramat gan')}
                 </div>
                 </div>
-            </div>
+            </a>
 
-            <div className="city-card row">
+            <a className="city-card row" href='/cities/haifa'>
                 <img className='city-img' src={Haifa} alt='haifa image' />
                 <div className="city-info column">
                 <h3 className='cc-city-name'>Haifa</h3>
                 <div className="city-stats row">
                     <img src={MapPin} />
-                    {countCitySpots('haifa')} spots
+                    {countCitySpots('haifa')}
                 </div>
                 </div>
-            </div>
+            </a>
 
         </div>
     )

@@ -28,7 +28,7 @@ function Home(){
         <div className="column title">
           <div className="row headings">
             <h1>Laptopistim</h1>
-            <h1>//</h1>
+            <h1 className='headings-divider'>//</h1>
             <h1 className='h1-hb'>לפטופיסטים</h1>
           </div>
 
@@ -51,8 +51,8 @@ function Home(){
         </div>
 
         <div className="row btn-row">
-          <button className="primary">Find a cafe to work from</button>
-          <button className="secondary">Add your cafe</button>
+          <a href='/spots' className="primary">Find a cafe to work from</a>
+          <a href='/contribute' className="secondary">Add your cafe</a>
         </div>
 
       </header>
@@ -63,7 +63,7 @@ function Home(){
 
         <div className="ls-title row">
           <h2>Latest spots</h2>
-          <button className="secondary">View All<img src={DoubleChevronRight} height="14"/></button>
+          <a href='/spots' className="secondary">View All<img src={DoubleChevronRight} height="14"/></a>
         </div>
 
         <Splide hasTrack={false}
@@ -74,7 +74,10 @@ function Home(){
             perPage: 3,
             perMove: 1,
             autoHeight: false,
-            pagination: false
+            pagination: false,
+            breakpoints: {
+              580 : { perPage: 1, gap: 0 }
+            },
           } }
           aria-label="My Favorite Images"
         >
@@ -89,7 +92,9 @@ function Home(){
                       <h3>{spot.name}</h3>
                       <div className="lsci-address">
                         <img src={MapPin} />
-                        {spot.address}
+                        <p>
+                          {spot.address}
+                        </p>
                       </div>
 
                       {/* Conditional rendering based on feedback type averages */}
