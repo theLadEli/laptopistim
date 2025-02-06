@@ -2,6 +2,7 @@ import express from 'express';
 import { getAllSpots } from '../controllers/allSpots.js';
 import getLatestSpots from '../controllers/latestSpots.js';
 import getSpotDetails from '../controllers/spotDetails.js';
+import spotFeedback from '../controllers/spotFeedback.js'
 
 const router = express.Router();
 
@@ -32,6 +33,8 @@ router.get('/spot/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Error fetching latest spots' });
     }
-});  
+});
+
+router.post('/spot-feedback', spotFeedback);
 
 export default router;
