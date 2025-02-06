@@ -33,6 +33,12 @@ function Spot() {
   const [title, setTitle] = useState('');
   const [comment, setComment] = useState('');
   const [error, setError] = useState('');
+  
+  const [wifiRating, setWifiRating] = useState()
+  const [powerSocketRating, setPowerSocketRating] = useState()
+  const [occupancyRating, setOccupancyRating] = useState()
+  const [openLateRating, setOpenLateRating] = useState()
+  const [ratingError, setRatingError] = useState('');
 
   const userId = user?.id;
 
@@ -45,6 +51,25 @@ function Spot() {
 
   if (!spot) {
     return <div id='spot-loading'>Loading...</div>;
+  }
+
+  async function handlSubmitRatings(e) {
+    e.preventDefault();
+    console.log(`Wifi rating: ${wifiRating}, Power Sockets: ${powerSocketRating}, occupancy rating: ${occupancyRating}, open late: ${openLateRating}`)
+        
+    const response = await fetch("http://localhost:5200/spots/spot-ratings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId, id, wifiRating, powerSocketRating, occupancyRating, openLateRating }),
+    });
+
+    try {
+      const data = await response.json();
+      setRatingError('')
+      setSubmitRating(false)
+    } catch (error) {
+      setRatingError(error)
+    }
   }
 
   async function postFeedback(e){
@@ -110,49 +135,44 @@ function Spot() {
           </p>
         </div>
 
-        <button className="secondary" onClick={() => setSubmitRating(true)}>Visited? <span className='cf-button-text-light'>Share your experience</span></button>
+        { !submitRating &&
+          <button className="secondary" onClick={() => setSubmitRating(true)}>Visited? <span className='cf-button-text-light'>Share your experience</span></button>
+        }
 
         { submitRating && (
           isAuthenticated ?
-              <form>
+              <form id='submit-ratings' onSubmit={handlSubmitRatings}>
                 <label>WiFi
-                  <div className="submit-rating-radios">
-                    <input type="radio" name="wifi-radio" value={1} />
-                    <input type="radio" name="wifi-radio" value={2} />
-                    <input type="radio" name="wifi-radio" value={3} />
-                    <input type="radio" name="wifi-radio" value={4} />
-                    <input type="radio" name="wifi-radio" value={5} />
+                  <div className="rating-circle-row">
+                    {[1, 2, 3, 4, 5].map((num) => (
+                      <input key={num} type="radio" name="wifi-radio" value={num} onChange={(e) => setWifiRating(e.target.value)} />
+                    ))}
                   </div>
                 </label>
                 <label>Power Sockets
-                  <div className="submit-rating-radios">
-                    <input type="radio" name="power-sockets-radio" value={1} />
-                    <input type="radio" name="power-sockets-radio" value={2} />
-                    <input type="radio" name="power-sockets-radio" value={3} />
-                    <input type="radio" name="power-sockets-radio" value={4} />
-                    <input type="radio" name="power-sockets-radio" value={5} />
+                  <div className="rating-circle-row">
+                    {[1, 2, 3, 4, 5].map((num) => (
+                      <input key={num} type="radio" name="power-sockets-radio" value={num} onChange={(e) => setPowerSocketRating(e.target.value)} />
+                    ))}
                   </div>
                 </label>
                 <label>Occupancy
-                  <div className="submit-rating-radios">
-                    <input type="radio" name="occupancy-radio" value={1} />
-                    <input type="radio" name="occupancy-radio" value={2} />
-                    <input type="radio" name="occupancy-radio" value={3} />
-                    <input type="radio" name="occupancy-radio" value={4} />
-                    <input type="radio" name="occupancy-radio" value={5} />
+                  <div className="rating-circle-row">
+                    {[1, 2, 3, 4, 5].map((num) => (
+                      <input key={num} type="radio" name="occupancy-radio" value={num} onChange={(e) => setOccupancyRating(e.target.value)} />
+                    ))}
                   </div>
                 </label>
                 <label>Open Late
-                  <div className="submit-rating-radios">
-                    <input type="radio" name="open-late-radio" value={1} />
-                    <input type="radio" name="open-late-radio" value={2} />
-                    <input type="radio" name="open-late-radio" value={3} />
-                    <input type="radio" name="open-late-radio" value={4} />
-                    <input type="radio" name="open-late-radio" value={5} />
+                  <div className="rating-circle-row">
+                    {[1, 2, 3, 4, 5].map((num) => (
+                      <input key={num} type="radio" name="open-late-radio" value={num} onChange={(e) => setOpenLateRating(e.target.value)} />
+                    ))}
                   </div>
                 </label>
 
                 <input className='primary' type="submit" value="Submit" />
+                {ratingError  && <p style={{ color: "red" }}>{ratingError}</p>}
               </form>
               : 
               <>
@@ -162,14 +182,16 @@ function Spot() {
           )
         }
 
+      { !submitRating &&
         <div className="cf-ratings column">
 
-        <Rating ratingName="WiFi" ratingValue={spot.avg_wifi_rating} ratingIcon={WiFi} />
-        <Rating ratingName="Occupancy" ratingValue={spot.avg_crowdedness_rating} ratingIcon={Crowdedness} />
-        <Rating ratingName="Power Sockets" ratingValue={spot.avg_power_sockets_rating} ratingIcon={PowerSockets} />
-        <Rating ratingName="Open Late" ratingValue={spot.avg_open_late_rating} ratingIcon={Clock} />
+          <Rating ratingName="WiFi" ratingValue={spot.avg_wifi_rating} ratingIcon={WiFi} />
+          <Rating ratingName="Occupancy" ratingValue={spot.avg_crowdedness_rating} ratingIcon={Crowdedness} />
+          <Rating ratingName="Power Sockets" ratingValue={spot.avg_power_sockets_rating} ratingIcon={PowerSockets} />
+          <Rating ratingName="Open Late" ratingValue={spot.avg_open_late_rating} ratingIcon={Clock} />
 
         </div>
+      }
       </div>
 
       <div id="comments" className='column'>

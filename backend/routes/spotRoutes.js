@@ -3,6 +3,7 @@ import { getAllSpots } from '../controllers/allSpots.js';
 import getLatestSpots from '../controllers/latestSpots.js';
 import getSpotDetails from '../controllers/spotDetails.js';
 import spotFeedback from '../controllers/spotFeedback.js'
+import spotRatings from '../controllers/spotRatings.js'
 
 const router = express.Router();
 
@@ -36,5 +37,6 @@ router.get('/spot/:id', async (req, res) => {
 });
 
 router.post('/spot-feedback', spotFeedback);
+router.post('/spot-ratings', spotRatings);
 
 export default router;
