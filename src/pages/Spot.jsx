@@ -55,24 +55,29 @@ function Spot() {
 
   async function handlSubmitRatings(e) {
     e.preventDefault();
-    console.log(`Wifi rating: ${wifiRating}, Power Sockets: ${powerSocketRating}, occupancy rating: ${occupancyRating}, open late: ${openLateRating}`)
-        
-    const response = await fetch("https://laptopistim.onrender.com/spots/spot-ratings", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userId, id, wifiRating, powerSocketRating, occupancyRating, openLateRating }),
-    });
 
     try {
-      const data = await response.json();
-      setRatingError('')
+      const postRatings = await fetch("https://laptopistim.onrender.com/spots/spot-ratings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, id, wifiRating, powerSocketRating, occupancyRating, openLateRating }),
+      });
+
+      if (!postRatings.ok) {
+        throw new Error(`HTTP error! Status: ${postRatings.status}`);
+      }
+
+      const postRatingsData = await postRatings.json();
+      setRefresh(prev => prev + 1);
       setSubmitRating(false)
+      setRatingError('')
     } catch (error) {
-      setRatingError(error)
+      console.error("Error submitting ratings:", error, error.message, error.stack);
+      setRatingError("Failed to submit rating. Please try again later.")
     }
   }
 
-  async function postFeedback(e){
+  async function handlePostComment(e){
     e.preventDefault();
     if (title == '') {
       return setError('Please input a title to submit your feedback.')
@@ -141,29 +146,29 @@ function Spot() {
 
         { submitRating && (
           isAuthenticated ?
-              <form id='submit-ratings' onSubmit={handlSubmitRatings}>
-                <label>WiFi
+              <form id='submit-ratings' className='cf-ratings column' onSubmit={handlSubmitRatings}>
+                <label className='cfr-content'>WiFi
                   <div className="rating-circle-row">
                     {[1, 2, 3, 4, 5].map((num) => (
                       <input key={num} type="radio" name="wifi-radio" value={num} onChange={(e) => setWifiRating(e.target.value)} />
                     ))}
                   </div>
                 </label>
-                <label>Power Sockets
+                <label className='cfr-content'>Power Sockets
                   <div className="rating-circle-row">
                     {[1, 2, 3, 4, 5].map((num) => (
                       <input key={num} type="radio" name="power-sockets-radio" value={num} onChange={(e) => setPowerSocketRating(e.target.value)} />
                     ))}
                   </div>
                 </label>
-                <label>Occupancy
+                <label className='cfr-content'>Occupancy
                   <div className="rating-circle-row">
                     {[1, 2, 3, 4, 5].map((num) => (
                       <input key={num} type="radio" name="occupancy-radio" value={num} onChange={(e) => setOccupancyRating(e.target.value)} />
                     ))}
                   </div>
                 </label>
-                <label>Open Late
+                <label className='cfr-content'>Open Late
                   <div className="rating-circle-row">
                     {[1, 2, 3, 4, 5].map((num) => (
                       <input key={num} type="radio" name="open-late-radio" value={num} onChange={(e) => setOpenLateRating(e.target.value)} />
@@ -225,7 +230,7 @@ function Spot() {
 
 
           { isAuthenticated ?
-              <form onSubmit={postFeedback} className='column' id='spot-feedback-form'>
+              <form onSubmit={handlePostComment} className='column' id='spot-feedback-form'>
 
                 <label>
                   Title

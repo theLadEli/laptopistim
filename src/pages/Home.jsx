@@ -76,7 +76,8 @@ function Home(){
             autoHeight: false,
             pagination: false,
             breakpoints: {
-              580 : { perPage: 1, gap: 0 }
+              580 : { perPage: 1, gap: 0 },
+              950 : { perPage: 2, gap: 20 }
             },
           } }
           aria-label="My Favorite Images"
