@@ -14,7 +14,7 @@ function Home(){
   const [spots, setSpots] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5200/spots/latest-spots')
+    fetch('https://laptopistim.onrender.com/spots/latest-spots')
       .then(res => res.json())  // Parse response to JSON
       .then(data => setSpots(data))  // Update the 'spots' state with fetched data
       .catch(err => console.error('Error fetching spots:', err));  // Handle errors

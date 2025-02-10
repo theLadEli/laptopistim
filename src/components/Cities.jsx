@@ -12,7 +12,7 @@ export default function Cities() {
     const [cities, setCities] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5200/cities')
+        fetch('https://laptopistim.onrender.com/cities')
             .then(res => res.json())
             .then(data => setCities(data))
             .catch(err => console.error('Error fetching cities:', err));

@@ -43,7 +43,7 @@ function Spot() {
   const userId = user?.id;
 
   useEffect(() => {
-    fetch(`http://localhost:5200/spots/spot/${id}`)
+    fetch(`https://laptopistim.onrender.com/spots/spot/${id}`)
       .then(res => res.json())
       .then(data => setSpot(data))
       .catch(err => console.error('Error fetching spot details:', err));
@@ -57,7 +57,7 @@ function Spot() {
     e.preventDefault();
     console.log(`Wifi rating: ${wifiRating}, Power Sockets: ${powerSocketRating}, occupancy rating: ${occupancyRating}, open late: ${openLateRating}`)
         
-    const response = await fetch("http://localhost:5200/spots/spot-ratings", {
+    const response = await fetch("https://laptopistim.onrender.com/spots/spot-ratings", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, id, wifiRating, powerSocketRating, occupancyRating, openLateRating }),
@@ -81,7 +81,7 @@ function Spot() {
       return setError('Please provide your comment to submit feedback.')
     };
     
-    const response = await fetch("http://localhost:5200/spots/spot-feedback", {
+    const response = await fetch("https://laptopistim.onrender.com/spots/spot-feedback", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, id, title, comment }),

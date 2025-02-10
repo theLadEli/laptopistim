@@ -20,7 +20,7 @@ function Register() {
         if (password != confirmPassword) return setError('Password confirmation incorrect.')
 
         try {
-            const response = await fetch('http://localhost:5200/auth/register', {
+            const response = await fetch('https://laptopistim.onrender.com/auth/register', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ firstName, lastName, email, phone, city, password })
