@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useSearchParams, useLocation } from 'react-router-dom';
+import { useParams, useSearchParams, useNavigate, useLocation } from 'react-router-dom';
 
 import Cities from '../components/Cities';
 
@@ -12,24 +12,62 @@ import Clock from '../assets/icons/clock.svg'
 import WiFi from '../assets/icons/WiFi.svg'
 
 export default function Spots() {
+    const location = useLocation(); // Get current URL
+    const navigate = useNavigate();
+    const queryParams = new URLSearchParams(location.search);
+    
     const [spots, setSpots] = useState([]);
 
-    // Getting query params
-    const location = useLocation(); // Get current URL
-    const queryParams = new URLSearchParams(location.search);
     const [sortby, setSortby] = useState(queryParams.get('sortby') || 'default');
+    const [powerSockets, setPowerSockets] = useState(queryParams.get("powerSockets") === "true");
+    const [openLate, setOpenLate] = useState(queryParams.get("openLate") === "true");
+    const [wifi, setWifi] = useState(queryParams.get("wifi") === "true");
+    const [wifiCommunityRated, setWifiFilterRating] = useState(queryParams.get("wifiCommunityRated") || 0);
+
+    // Function to update URL without fetching
+    const updateUrl = (updatedParams) => {
+        const params = new URLSearchParams(location.search);
+
+        Object.entries(updatedParams).forEach(([key, value]) => {
+            if (value) {
+                params.set(key, value.toString());
+            } else {
+                params.delete(key);
+            }
+        });
+
+        navigate(`?${params.toString()}`, { replace: true });
+    };
 
     useEffect(() => {
-        fetch(`https://laptopistim.onrender.com/spots/all?sortby=${sortby}`)
+        const params = new URLSearchParams(location.search);
+        fetch(`https://laptopistim.onrender.com/spots/all?${params.toString()}`)
         .then(res => res.json())  // Parse response to JSON
         .then(data => setSpots(data))  // Update the 'spots' state with fetched data
-        .catch(err => console.error('Error fetching spots:', err));  // Handle errors
-    }, [sortby]);
+        .catch(err => console.error('Error fetching spots:', err));
+    }, [location.search]);
+
+    // Handlers for filters
+    const handleWifiChange = () => {
+        setWifi(prev => {
+            const newValue = !prev;
+            updateUrl({ wifi: newValue });
+            return newValue;
+        });
+    };
+
+    const handleOpenLateChange = () => {
+        setOpenLate(prev => {
+            const newValue = !prev;
+            updateUrl({ openLate: newValue });
+            return newValue;
+        });
+    };
 
     const handleSortChange = (e) => {
         const newSort = e.target.value;
         setSortby(newSort);
-        navigate(`?sortby=${newSort}`, { replace: true });
+        updateUrl({ sortby: newSort });
     };
 
     return (
@@ -58,12 +96,40 @@ export default function Spots() {
             <section id="all-spots" className='row'>
 
                 <div id="as-filter" className="column">
-
-                    {/* FILTER BUTTONS */}
-                        {/* <button onClick={() => handleSortChange("newest")}>Sort by Newest</button> */}
-                        {/* <button onClick={() => handleSortChange("highest-rated")}>Sort by Rating</button> */}
-                    {/* END FILTER BUTTONS */}
-
+                    <div className="asf-section">
+                        <h3>Must Include</h3>
+                        <label>
+                            <input type="checkbox" name="req-power-sockets" />
+                            Power Sockets
+                        </label>
+                        <label>
+                            <input checked={openLate} onChange={handleOpenLateChange} type="checkbox" name="req-open-late" />
+                            Open Late
+                        </label>
+                    </div>
+                    <div className="asf-section">
+                        <h3>WiFi</h3>
+                        <label>
+                            <input checked={wifi} onChange={handleWifiChange} type="checkbox" name="req-wifi" />
+                            Must offer WiFi
+                        </label>
+                        <label>
+                            <input type="checkbox" name="req-wifi-community-rated" onClick={
+                                (e) => {
+                                    const radios = document.getElementsByName('req-wifi-filter-radio');
+                                    radios.forEach(radio => radio.disabled = !e.target.checked);
+                                }
+                            } />
+                            Community rated...
+                        </label>
+                        <div className="rating-circle-row">
+                            <input disabled type="radio" name="req-wifi-filter-radio" value='1' onChange={(e) => setWifiFilterRating(e.target.value)} />
+                            <input disabled type="radio" name="req-wifi-filter-radio" value='1' onChange={(e) => setWifiFilterRating(e.target.value)} />
+                            <input disabled type="radio" name="req-wifi-filter-radio" value='1' onChange={(e) => setWifiFilterRating(e.target.value)} />
+                            <input disabled type="radio" name="req-wifi-filter-radio" value='1' onChange={(e) => setWifiFilterRating(e.target.value)} />
+                            <input disabled type="radio" name="req-wifi-filter-radio" value='1' onChange={(e) => setWifiFilterRating(e.target.value)} />
+                        </div>
+                    </div>
                 </div>
 
                 <div id="as-list" className="column">
@@ -74,7 +140,7 @@ export default function Spots() {
                             {spots.length} spots
                         </p>
 
-                        <select name="sort_by" id="sd-sort_by">
+                        <select onChange={handleSortChange} value={sortby} name="sort_by" id="sd-sort_by">
                             <option value="default">Sort by: default</option>
                             <option value="newest-oldest">Sort by: latest to oldest</option>
                             <option value="oldest-newest">Sort by: oldest to newest</option>
