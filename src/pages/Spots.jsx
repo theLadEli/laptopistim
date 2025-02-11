@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams, useLocation } from 'react-router-dom';
 
 import Cities from '../components/Cities';
 
@@ -14,12 +14,23 @@ import WiFi from '../assets/icons/WiFi.svg'
 export default function Spots() {
     const [spots, setSpots] = useState([]);
 
+    // Getting query params
+    const location = useLocation(); // Get current URL
+    const queryParams = new URLSearchParams(location.search);
+    const [sortby, setSortby] = useState(queryParams.get('sortby') || 'default');
+
     useEffect(() => {
-        fetch('https://laptopistim.onrender.com/spots/all')
+        fetch(`https://laptopistim.onrender.com/spots/all?sortby=${sortby}`)
         .then(res => res.json())  // Parse response to JSON
         .then(data => setSpots(data))  // Update the 'spots' state with fetched data
         .catch(err => console.error('Error fetching spots:', err));  // Handle errors
-    }, []);
+    }, [sortby]);
+
+    const handleSortChange = (e) => {
+        const newSort = e.target.value;
+        setSortby(newSort);
+        navigate(`?sortby=${newSort}`, { replace: true });
+    };
 
     return (
     <>
@@ -65,8 +76,8 @@ export default function Spots() {
 
                         <select name="sort_by" id="sd-sort_by">
                             <option value="default">Sort by: default</option>
-                            <option value="default">Sort by: latest to oldest</option>
-                            <option value="default">Sort by: oldest to newest</option>
+                            <option value="newest-oldest">Sort by: latest to oldest</option>
+                            <option value="oldest-newest">Sort by: oldest to newest</option>
                         </select>
                     </div>
                     
