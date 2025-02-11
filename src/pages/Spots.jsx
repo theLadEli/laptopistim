@@ -24,24 +24,26 @@ export default function Spots() {
     const [wifi, setWifi] = useState(queryParams.get("wifi") === "true");
     const [wifiCommunityRated, setWifiCommunityRated] = useState(queryParams.get("wificommunityrated") || 0);
 
-    // Function to update URL without fetching
-    const updateUrl = (updatedParams) => {
-        const params = new URLSearchParams(location.search);
+    console.log('1. Inside Spots function')
+    useEffect(() => {
+        console.log('2. Inside first useEffect')
+        const params = new URLSearchParams();
 
-        Object.entries(updatedParams).forEach(([key, value]) => {
-            if (value) {
-                params.set(key, value.toString());
-            } else {
-                params.delete(key);
-            }
-        });
+        if (sortby !== "default") params.set("sortby", sortby);
+        if (powerSockets) params.set("powersockets", "true");
+        if (openLate) params.set("openlate", "true");
+        if (wifi) params.set("wifi", "true");
+        if (wifiCommunityRated > 0) params.set("wificommunityrated", wifiCommunityRated);
 
         navigate(`?${params.toString()}`, { replace: true });
-    };
+        console.log('3. Sending this fetch req param: http://localhost:5200/spots/all?', params.toString());
+    }, [sortby, powerSockets, openLate, wifi, wifiCommunityRated, navigate]);
 
     useEffect(() => {
+        console.log('4. Inside second useEffect')
         const params = new URLSearchParams(location.search);
-        fetch(`https://laptopistim.onrender.com/spots/all?${params.toString()}`)
+        console.log('5. Sending this fetch req param: http://localhost:5200/spots/all?', params.toString());
+        fetch(`http://localhost:5200/spots/all?${params.toString()}`)
         .then(res => res.json())  // Parse response to JSON
         .then(data => setSpots(data))  // Update the 'spots' state with fetched data
         .catch(err => console.error('Error fetching spots:', err));
@@ -51,7 +53,6 @@ export default function Spots() {
     const handlePowerSocketsChange = () => {
         setPowerSockets(prev => {
             const newValue = !prev;
-            updateUrl({ powersockets: newValue });
             return newValue;
         });
     };
@@ -59,7 +60,6 @@ export default function Spots() {
     const handleWifiChange = () => {
         setWifi(prev => {
             const newValue = !prev;
-            updateUrl({ wifi: newValue });
             return newValue;
         });
     };
@@ -67,7 +67,6 @@ export default function Spots() {
     const handleOpenLateChange = () => {
         setOpenLate(prev => {
             const newValue = !prev;
-            updateUrl({ openlate: newValue });
             return newValue;
         });
     };
@@ -75,13 +74,11 @@ export default function Spots() {
     const handleSortChange = (e) => {
         const newSort = e.target.value;
         setSortby(newSort);
-        updateUrl({ sortby: newSort });
     };
 
     const handleWifiCommunityRatedChange = (e) => {
-        setWifi(() => {
+        setWifiCommunityRated(() => {
             const newValue = e.target.value;
-            updateUrl({ wificommunityrated: newValue });
             return newValue;
         });
     };
@@ -163,7 +160,7 @@ export default function Spots() {
                         </select>
                     </div>
                     
-
+                    {spots.length === 0 && <p>No spots meet the criteria.</p>}
                     {spots.map(spot => {
                         return (
                             <a href={`/spots/${spot.id}`} key={spot.id}>
