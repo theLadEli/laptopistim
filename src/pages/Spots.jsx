@@ -19,10 +19,10 @@ export default function Spots() {
     const [spots, setSpots] = useState([]);
 
     const [sortby, setSortby] = useState(queryParams.get('sortby') || 'default');
-    const [powerSockets, setPowerSockets] = useState(queryParams.get("powerSockets") === "true");
-    const [openLate, setOpenLate] = useState(queryParams.get("openLate") === "true");
+    const [powerSockets, setPowerSockets] = useState(queryParams.get("powersockets") === "true");
+    const [openLate, setOpenLate] = useState(queryParams.get("openlate") === "true");
     const [wifi, setWifi] = useState(queryParams.get("wifi") === "true");
-    const [wifiCommunityRated, setWifiFilterRating] = useState(queryParams.get("wifiCommunityRated") || 0);
+    const [wifiCommunityRated, setWifiCommunityRated] = useState(queryParams.get("wificommunityrated") || 0);
 
     // Function to update URL without fetching
     const updateUrl = (updatedParams) => {
@@ -48,6 +48,14 @@ export default function Spots() {
     }, [location.search]);
 
     // Handlers for filters
+    const handlePowerSocketsChange = () => {
+        setPowerSockets(prev => {
+            const newValue = !prev;
+            updateUrl({ powersockets: newValue });
+            return newValue;
+        });
+    };
+
     const handleWifiChange = () => {
         setWifi(prev => {
             const newValue = !prev;
@@ -59,7 +67,7 @@ export default function Spots() {
     const handleOpenLateChange = () => {
         setOpenLate(prev => {
             const newValue = !prev;
-            updateUrl({ openLate: newValue });
+            updateUrl({ openlate: newValue });
             return newValue;
         });
     };
@@ -68,6 +76,14 @@ export default function Spots() {
         const newSort = e.target.value;
         setSortby(newSort);
         updateUrl({ sortby: newSort });
+    };
+
+    const handleWifiCommunityRatedChange = (e) => {
+        setWifi(() => {
+            const newValue = e.target.value;
+            updateUrl({ wificommunityrated: newValue });
+            return newValue;
+        });
     };
 
     return (
@@ -99,7 +115,7 @@ export default function Spots() {
                     <div className="asf-section">
                         <h3>Must Include</h3>
                         <label>
-                            <input type="checkbox" name="req-power-sockets" />
+                            <input checked={powerSockets} onChange={handlePowerSocketsChange} type="checkbox" name="req-power-sockets" />
                             Power Sockets
                         </label>
                         <label>
@@ -123,11 +139,11 @@ export default function Spots() {
                             Community rated...
                         </label>
                         <div className="rating-circle-row">
-                            <input disabled type="radio" name="req-wifi-filter-radio" value='1' onChange={(e) => setWifiFilterRating(e.target.value)} />
-                            <input disabled type="radio" name="req-wifi-filter-radio" value='1' onChange={(e) => setWifiFilterRating(e.target.value)} />
-                            <input disabled type="radio" name="req-wifi-filter-radio" value='1' onChange={(e) => setWifiFilterRating(e.target.value)} />
-                            <input disabled type="radio" name="req-wifi-filter-radio" value='1' onChange={(e) => setWifiFilterRating(e.target.value)} />
-                            <input disabled type="radio" name="req-wifi-filter-radio" value='1' onChange={(e) => setWifiFilterRating(e.target.value)} />
+                            <input disabled type="radio" name="req-wifi-filter-radio" value='1' onChange={handleWifiCommunityRatedChange} />
+                            <input disabled type="radio" name="req-wifi-filter-radio" value='2' onChange={handleWifiCommunityRatedChange} />
+                            <input disabled type="radio" name="req-wifi-filter-radio" value='3' onChange={handleWifiCommunityRatedChange} />
+                            <input disabled type="radio" name="req-wifi-filter-radio" value='4' onChange={handleWifiCommunityRatedChange} />
+                            <input disabled type="radio" name="req-wifi-filter-radio" value='5' onChange={handleWifiCommunityRatedChange} />
                         </div>
                     </div>
                 </div>
