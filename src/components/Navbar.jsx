@@ -17,9 +17,9 @@ function Navbar() {
                 <nav className="row nav-links">
                     <li><a href="/">Home</a></li>
                     <li><a href="/spots">Spots</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contribute">Contribute</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contribute">Contribute</a></li>
+                    <li><a href="/contact">Contact</a></li>
                 </nav>
 
                 <img src={Hamburger} onClick={() => !showMenuDropdown ? setShowMenuDropdown(true) : setShowMenuDropdown(false)} alt="Menu button icon" className="navbar-hamburger" height={20} />

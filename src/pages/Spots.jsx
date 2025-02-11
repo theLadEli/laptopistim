@@ -21,25 +21,6 @@ export default function Spots() {
         .catch(err => console.error('Error fetching spots:', err));  // Handle errors
     }, []);
 
-    // function SpotsList() {
-    //     const [searchParams, setSearchParams] = useSearchParams();
-
-    //     function handleSortChange(newSort) {
-    //         searchParams.set("sort-by", newSort);
-    //         setSearchParams(searchParams);
-    //     };
-    // }
-
-    // const sortBy = searchParams.get("sort-by") || "newest";
-    // fetch('http://localhost:5200/spots?sort-by=${sortBy}')
-
-    // const [searchParams, setSearchParams] = useSearchParams();
-
-    // const handleSortChange = (newSort) => {
-    //     searchParams.set("sort-by", newSort);
-    //     setSearchParams(searchParams);
-    // };
-
     return (
     <>
         <div className="header-container container">
