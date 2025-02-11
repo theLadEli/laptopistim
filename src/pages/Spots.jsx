@@ -24,9 +24,7 @@ export default function Spots() {
     const [wifi, setWifi] = useState(queryParams.get("wifi") === "true");
     const [wifiCommunityRated, setWifiCommunityRated] = useState(queryParams.get("wificommunityrated") || 0);
 
-    console.log('1. Inside Spots function')
     useEffect(() => {
-        console.log('2. Inside first useEffect')
         const params = new URLSearchParams();
 
         if (sortby !== "default") params.set("sortby", sortby);
@@ -36,14 +34,11 @@ export default function Spots() {
         if (wifiCommunityRated > 0) params.set("wificommunityrated", wifiCommunityRated);
 
         navigate(`?${params.toString()}`, { replace: true });
-        console.log('3. Sending this fetch req param: http://localhost:5200/spots/all?', params.toString());
     }, [sortby, powerSockets, openLate, wifi, wifiCommunityRated, navigate]);
 
     useEffect(() => {
-        console.log('4. Inside second useEffect')
         const params = new URLSearchParams(location.search);
-        console.log('5. Sending this fetch req param: http://localhost:5200/spots/all?', params.toString());
-        fetch(`http://localhost:5200/spots/all?${params.toString()}`)
+        fetch(`https://laptopistim.onrender.com/spots/all?${params.toString()}`)
         .then(res => res.json())  // Parse response to JSON
         .then(data => setSpots(data))  // Update the 'spots' state with fetched data
         .catch(err => console.error('Error fetching spots:', err));
