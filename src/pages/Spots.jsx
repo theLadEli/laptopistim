@@ -136,11 +136,11 @@ export default function Spots() {
                             Community rated...
                         </label>
                         <div className="rating-circle-row">
-                            <input disabled type="radio" name="req-wifi-filter-radio" value='1' onChange={handleWifiCommunityRatedChange} />
-                            <input disabled type="radio" name="req-wifi-filter-radio" value='2' onChange={handleWifiCommunityRatedChange} />
-                            <input disabled type="radio" name="req-wifi-filter-radio" value='3' onChange={handleWifiCommunityRatedChange} />
-                            <input disabled type="radio" name="req-wifi-filter-radio" value='4' onChange={handleWifiCommunityRatedChange} />
-                            <input disabled type="radio" name="req-wifi-filter-radio" value='5' onChange={handleWifiCommunityRatedChange} />
+                            <input type="radio" checked={wifiCommunityRated == 1} name="req-wifi-filter-radio" value='1' onChange={handleWifiCommunityRatedChange} />
+                            <input type="radio" checked={wifiCommunityRated == 2} name="req-wifi-filter-radio" value='2' onChange={handleWifiCommunityRatedChange} />
+                            <input type="radio" checked={wifiCommunityRated == 3} name="req-wifi-filter-radio" value='3' onChange={handleWifiCommunityRatedChange} />
+                            <input type="radio" checked={wifiCommunityRated == 4} name="req-wifi-filter-radio" value='4' onChange={handleWifiCommunityRatedChange} />
+                            <input type="radio" checked={wifiCommunityRated == 5} name="req-wifi-filter-radio" value='5' onChange={handleWifiCommunityRatedChange} />
                         </div>
                     </div>
                 </div>
