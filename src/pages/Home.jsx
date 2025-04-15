@@ -22,7 +22,7 @@ function Home(){
 
   return (
     <>
-    <div className="header-container container">
+    <div className="home-header-container header-container container">
       <header className='column'>
 
         <div className="column title">

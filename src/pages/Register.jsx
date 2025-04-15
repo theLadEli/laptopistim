@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from "../AuthContext";
 
+// Phone num validation
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
+
 function Register() {
     const { login } = useAuth();
 
@@ -61,7 +65,6 @@ function Register() {
             <section id="login">
                 <form onSubmit={handleSubmit} className='column'>
 
-
                     <label>
                         First Name
                         <input required placeholder='John' type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
@@ -81,6 +84,18 @@ function Register() {
                         Phone Number
                         <input required placeholder='+972 050 0000000' type="number" value={phone} onChange={(e) => setPhone(e.target.value)} />
                     </label>
+
+                    <PhoneInput
+                        country={"us"} // Default country (can be "il" for Israel, etc.)
+                        value={phone}
+                        onChange={(phone) => {
+                            setPhone(phone);
+                            onPhoneChange(phone);
+                        }}
+                        enableSearch={true} // Allow searching country codes
+                        countryCodeEditable={false} // Prevent manual country code edits
+                        placeholder="Enter phone number"
+                    />
 
                     <label>
                         City
