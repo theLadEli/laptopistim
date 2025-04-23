@@ -188,7 +188,7 @@ function Spot() {
     { !submitRating &&
       <div className="cf-ratings column">
 
-        <Rating ratingName="WiFi" ratingValue={spot.avg_wifi_rating} ratingIcon={WiFi} />
+        <Rating ratingName="WiFi" ratingValue={spot.avg_wifi_rating} ratingIcon={wifi} />
         <Rating ratingName="Occupancy" ratingValue={spot.avg_crowdedness_rating} ratingIcon={Crowdedness} />
         <Rating ratingName="Power Sockets" ratingValue={spot.avg_power_sockets_rating} ratingIcon={PowerSockets} />
         <Rating ratingName="Open Late" ratingValue={spot.avg_open_late_rating} ratingIcon={Clock} />
