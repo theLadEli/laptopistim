@@ -8,7 +8,7 @@ import MapPin from '../assets/icons/map-pin.svg'
 import PowerSockets from '../assets/icons/power-sockets.svg'
 import Crowdedness from '../assets/icons/crowdedness.svg'
 import Clock from '../assets/icons/clock.svg'
-import WiFi from '../assets/icons/WiFi.svg'
+import WiFi from '../assets/icons/wifi.svg'
 
 function Home(){
   const [spots, setSpots] = useState([]);
