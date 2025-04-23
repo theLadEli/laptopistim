@@ -11,11 +11,11 @@ const options = {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthProvider>
-    <PostHogProvider 
+    {/* <PostHogProvider  
       apiKey={import.meta.env.VITE_PUBLIC_POSTHOG_KEY}
       options={options}
-    >
+    >*/}
       <App />
-    </PostHogProvider>
+    {/*</PostHogProvider>*/}
   </AuthProvider>
 );
