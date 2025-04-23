@@ -8,7 +8,7 @@ import Rating from '../components/Rating';
 
 // Icons
 import StatusCircle from '../assets/icons/status-circle.svg'
-import WiFi from '../assets/icons/wifi.svg'
+import wifi from '../assets/icons/wifi.svg'
 import Crowdedness from '../assets/icons/crowdedness.svg'
 import PowerSockets from '../assets/icons/power-sockets.svg'
 import Clock from '../assets/icons/clock.svg'
