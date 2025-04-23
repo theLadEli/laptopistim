@@ -50,3 +50,24 @@ footer {
   text-transform: capitalize;
   color: #262626;
 }
+
+@media (max-width: 800px) {
+  .footer-logo {
+    text-align: center;
+  }
+
+  .footer-logo img {
+    max-width: 80%;
+  }
+
+  .footer-links {
+    justify-content: flex-start;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 650px) {
+  footer {
+    flex-direction: column-reverse;
+  }
+}

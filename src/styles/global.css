@@ -75,10 +75,6 @@ p {
   line-height: 3.6rem;
 }
 
-.p2 {
-
-}
-
 /* Buttons */
 
 a {
@@ -95,11 +91,11 @@ a {
   max-width: 500px;
 
   cursor: pointer;
-  padding: 0.8rem 2.4rem;
   gap: 10px;
+  padding: 0.8rem 2.4rem;
+  border: 2px solid #262626;
   background: #262626;
   border-radius: 90px;
-  border: none;
 
   font-family: 'Outfit';
   font-style: normal;
@@ -129,6 +125,10 @@ a {
   font-size: 2.2rem;
   line-height: 2.8rem;
   color: #262626;
+}
+
+.btn-row {
+  gap: 3rem;
 }
 
 /* Flexbox */
@@ -168,7 +168,7 @@ input[type="password"], input[type="number"], textarea {
   align-items: center;
   padding: 8px 24px;
   gap: 10px;
-  border: 2px solid #262626 !important;
+  border: 2px solid #262626;
   border-radius: 90px;
   background: unset;
   min-width: 300px;
@@ -194,6 +194,15 @@ input::placeholder, textarea::placeholder {
   opacity: 0.4;
 }
 
+/* Other */
+
+hr {
+  height: 2px;
+  width: 130px;
+  background-color: black;
+  border: none;
+}
+
 /* Coming Soon  */
 
 #coming-soon {
@@ -209,79 +218,19 @@ input::placeholder, textarea::placeholder {
   text-align: center;
 }
 
-
 /* ----------------------------- */
 /* - Multi Device Optimisation - */
 /* ----------------------------- */
 
-
-/* Media query for Medium Desktop screen size */
 @media (max-width: 1200px) {
   html {
     font-size: 9px;
   }
-
-  #as-filter {
-    max-width: 220px !important;
-  }
-
 }
 
-/* Media query for Medium screen size */
 @media (max-width: 1000px) {
   html {
       font-size: 8px;
-  }
-
-  .assc-cover-img {
-    max-width: 225px !important;
-  }
-
-  .assc-content {
-    padding: 40px 30px !important;
-  }
-}
-
-@media (max-width: 800px) {
-  .nav-links {
-    gap: 3rem;
-  }
-
-  .assc-cover-img {
-    max-width: 125px !important;
-  }
-
-  .assc-content {
-    padding: 30px !important;
-  }
-
-  .footer-logo {
-    text-align: center;
-  }
-
-  .footer-logo img {
-    max-width: 80%;
-  }
-
-  .footer-links {
-    justify-content: flex-start !important;
-    gap: 30px;
-  }
-}
-
-@media (max-width: 650px) {
-  #all-spots {
-    flex-direction: column;
-  }
-
-  #as-filter {
-    flex-direction: row !important;
-    max-width: unset !important;
-    flex-wrap: wrap;
-  }
-
-  .assc-cover-img {
-    max-width: 200px !important;
   }
 }
 
@@ -295,17 +244,15 @@ input::placeholder, textarea::placeholder {
     font-size: 4rem;
     line-height: 4.2rem;
   }
+}
 
-  #spot-details {
-    padding: 30px 3rem !important;
+@media (max-width: 460px) {
+  .btn-row {
+    flex-direction: column;
+    gap: 2rem;
   }
 
-  .ls-card {
-    max-width: unset !important;
-  }
-
-  .assc-cover-img {
-    max-height: unset !important;
-    max-width: 125px !important;
+  hr {
+    width: 30px;
   }
 }

@@ -33,3 +33,34 @@ nav li a {
   color: #262626;
   text-decoration: none;
 }
+
+@media (max-width: 800px) {
+  .nav-links {
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 650px) {
+  .nav-links {
+    display: none;
+  }
+
+  .navbar-btn {
+    display: none;
+  }
+
+  .navbar-hamburger {
+    display: block;
+    cursor: pointer
+  }
+
+  .mobile-nav-dropdown {
+    width: 100%;
+    padding: 20px 50px;
+    background-color: #262626;
+  }
+
+  .mobile-nav-dropdown li a {
+    color: #FBF8F3;
+  }
+}

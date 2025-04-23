@@ -31,13 +31,6 @@ header {
   align-items: center;
 }
 
-hr {
-  height: 2px;
-  width: 130px;
-  background-color: black;
-  border: none;
-}
-
 .definitions {
   gap: 3.6rem;
   max-width: 96rem;
@@ -66,10 +59,6 @@ hr {
 
 .def-body {
   margin-left: 2.4rem;
-}
-
-.btn-row {
-  gap: 3rem;
 }
 
 /* Latest Spots */
@@ -164,4 +153,22 @@ hr {
   padding: none;
   background: none;
   border: none;
+}
+
+@media (max-width: 650px) {
+  .ls-card {
+    max-width: unset;
+  }
+
+  .title .headings {
+    flex-direction: column;
+  }
+
+  .headings-divider {
+    display: none;
+  }
+
+  .h1-hb {
+    padding-left: 5rem;
+  }
 }
