@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from "../AuthContext";
+import '../styles/pages/login.css'
 
 export default function Login() {
     const { login } = useAuth();
@@ -18,41 +19,34 @@ export default function Login() {
 
     return (
     <>
-        <div className="header-container container">
-            <section className='column reg-header'>
+    <section className='column reg-header'>
+        <div className="column title">
+            <h1>Login</h1>
 
-                <div className="column title">
-                    <h1>Login</h1>
-
-                    <div className="row subtitle">
-                        <hr/>
-                        <h5>share your experience</h5>
-                    </div>
-                </div>
-                <a className="primary" href="/register">Not yet registered? Sign Up</a>
-            </section>
+            <div className="row subtitle">
+                <hr/>
+                <h5>share your experience</h5>
+            </div>
         </div>
+        <a className="primary" href="/register">Not yet registered? Sign Up</a>
+    </section>
 
-        <div className="container">
-            <section id="login">
-                <form onSubmit={handleSubmit} className='column'>
-                    <label>
-                        Email
-                        <input required placeholder='your@email.com' type="email" onChange={(e) => setEmail(e.target.value)} />
-                    </label>
+    <section id="login">
+        <form onSubmit={handleSubmit} className='column'>
+            <label>
+                Email
+                <input required placeholder='your@email.com' type="email" onChange={(e) => setEmail(e.target.value)} />
+            </label>
 
-                    <label>
-                        Password
-                        <input required type="password" onChange={(e) => setPassword(e.target.value)} />
-                    </label>
+            <label>
+                Password
+                <input required type="password" onChange={(e) => setPassword(e.target.value)} />
+            </label>
 
-                    <input type="submit" value="Submit" className='primary' />
-                    {error && <p style={{ color: "red" }}>{error}</p>}
-                </form>
-
-            </section>
-        </div>
-
+            <input type="submit" value="Submit" className='primary' />
+            {error && <p style={{ color: "red" }}>{error}</p>}
+        </form>
+    </section>
     </>
     );
 }

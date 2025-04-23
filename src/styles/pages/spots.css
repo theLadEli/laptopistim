@@ -1,0 +1,99 @@
+header {
+  padding: 8rem 3rem;
+}
+
+#all-spots {
+  padding: 3rem;
+  gap: 30px;
+}
+
+#as-filter {
+  width: 300px;
+  max-width: 300px;
+  width: 100%;
+  gap: 30px;
+}
+
+#as-list {
+  width: 100%;
+  gap: 30px;
+}
+
+.as-filter-stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+#sd-sort_by {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 24px;
+  gap: 10px;
+  background: #262626;
+  border-radius: 90px;
+  border: none;
+  outline: none;
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 2.2rem;
+  line-height: 2.2rem;
+  color: #FFFFFF;
+}
+
+.as-spot-card {
+  display: flex;
+  flex-direction: row;
+  background: #ffffff;
+  border-bottom: solid 1px #000000;
+  height: 275px;
+}
+
+.assc-cover-img {
+  max-width: 325px;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.assc-content {
+  padding: 40px 50px;
+  width: 100%;
+  gap: 16px;
+}
+
+.assc-features {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 24px;
+  row-gap: 15px;
+}
+
+.assc-features li {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+  align-items: center;
+  list-style: none;
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+  color: #000000;
+}
+
+#as-filter h3 {
+  font-family: 'Funnel Display';
+}
+
+.asf-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

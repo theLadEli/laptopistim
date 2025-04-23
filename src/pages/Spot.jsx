@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
+import '../styles/pages/spot.css'
 
 // Components
 import Rating from '../components/Rating';
@@ -105,162 +106,157 @@ function Spot() {
 
   return (
   <>
-  <div className="header-container container">
-    <header id='spot-header' className='column'>
+  <header className='column'>
 
-        <div className="column title">
-          <h1>{spot.name}</h1>
+      <div className="column title">
+        <h1>{spot.name}</h1>
 
-          <div className="row subtitle">
-            <hr/>
-            <h5>{spot.address}</h5>
-          </div>
+        <div className="row subtitle">
+          <hr/>
+          <h4>{spot.address}</h4>
         </div>
-
-        <img src={spot.image} alt={`${spot.name} image`} className="spot-cover-img" />
-
-    </header>
-  </div>
-
-  <div className="container">
-    <section id="spot-details" className='column'>
-
-      <div id="about" className='column'>
-        <h2 className='sd-h2'>About</h2>
-        <p className='sd-p'>{spot.about}</p>
       </div>
 
-      <div id="community-feedback" className='column'>
+      <img src={spot.image} alt={`${spot.name} image`} className="spot-cover-img" />
 
-        <div className="cf-title column">
-          <h2 className='sd-h2'>Community Feedback</h2>
-          <p className="sd-subheading row">
-            <img src={StatusCircle} />
-            Based on {'{'}number{'}'} ratings
-          </p>
-        </div>
+  </header>
 
-        { !submitRating &&
-          <button className="secondary" onClick={() => setSubmitRating(true)}>Visited? <span className='cf-button-text-light'>Share your experience</span></button>
-        }
+  <section id="spot-details" className='column'>
 
-        { submitRating && (
-          isAuthenticated ?
-              <form id='submit-ratings' className='cf-ratings column' onSubmit={handlSubmitRatings}>
-                <label className='cfr-content'>WiFi
-                  <div className="rating-circle-row">
-                    {[1, 2, 3, 4, 5].map((num) => (
-                      <input key={num} type="radio" name="wifi-radio" value={num} onChange={(e) => setWifiRating(e.target.value)} />
-                    ))}
-                  </div>
-                </label>
-                <label className='cfr-content'>Power Sockets
-                  <div className="rating-circle-row">
-                    {[1, 2, 3, 4, 5].map((num) => (
-                      <input key={num} type="radio" name="power-sockets-radio" value={num} onChange={(e) => setPowerSocketRating(e.target.value)} />
-                    ))}
-                  </div>
-                </label>
-                <label className='cfr-content'>Occupancy
-                  <div className="rating-circle-row">
-                    {[1, 2, 3, 4, 5].map((num) => (
-                      <input key={num} type="radio" name="occupancy-radio" value={num} onChange={(e) => setOccupancyRating(e.target.value)} />
-                    ))}
-                  </div>
-                </label>
-                <label className='cfr-content'>Open Late
-                  <div className="rating-circle-row">
-                    {[1, 2, 3, 4, 5].map((num) => (
-                      <input key={num} type="radio" name="open-late-radio" value={num} onChange={(e) => setOpenLateRating(e.target.value)} />
-                    ))}
-                  </div>
-                </label>
+    <div id="about" className='column'>
+      <h3>About</h3>
+      <p className='sd-p'>{spot.about}</p>
+    </div>
 
-                <input className='primary' type="submit" value="Submit" />
-                {ratingError  && <p style={{ color: "red" }}>{ratingError}</p>}
-              </form>
-              : 
-              <>
-                <p>You need to be logged in to leave feedback.</p>
-                <a href="/login" className="primary">Log in</a>
-              </>
-          )
-        }
-
-      { !submitRating &&
-        <div className="cf-ratings column">
-
-          <Rating ratingName="WiFi" ratingValue={spot.avg_wifi_rating} ratingIcon={WiFi} />
-          <Rating ratingName="Occupancy" ratingValue={spot.avg_crowdedness_rating} ratingIcon={Crowdedness} />
-          <Rating ratingName="Power Sockets" ratingValue={spot.avg_power_sockets_rating} ratingIcon={PowerSockets} />
-          <Rating ratingName="Open Late" ratingValue={spot.avg_open_late_rating} ratingIcon={Clock} />
-
-        </div>
-      }
-      </div>
-
-      <div id="comments" className='column'>
+    <div id="community-feedback" className='column'>
 
       <div className="cf-title column">
-          <h2 className='sd-h2'>Comments</h2>
-          <p className="sd-subheading row">
-            <img src={StatusCircle} />
-            {spot.comments.length} comments
-          </p>
-        </div>
+        <h3>Community Feedback</h3>
+        <p className="sd-subheading row">
+          <img src={StatusCircle} />
+          Based on {'{'}number{'}'} ratings
+        </p>
+      </div>
 
-        <div className="comments-list column">
-          {spot.comments.map((comment) => (
-              <div className="cl-comment" key={comment.id}>
-                <div className="cl-author-initial">{comment.first_name.slice(0, 1)}</div>
-                <div className="cl-comment-author-wrapper">
-                  <div className="clc-content">
-                    <p>{comment.comment}</p>
-                    <p className='cl-comment-date'>{formatDate(comment.created_at)}</p>
-                  </div>
-                  <p className='cl-author-fname'>{comment.first_name}</p>
+      { !submitRating &&
+        <button className="secondary" onClick={() => setSubmitRating(true)}>Visited? <span className='cf-button-text-light'>Share your experience</span></button>
+      }
+
+      { submitRating && (
+        isAuthenticated ?
+            <form id='submit-ratings' className='cf-ratings column' onSubmit={handlSubmitRatings}>
+              <label className='cfr-content'>WiFi
+                <div className="rating-circle-row">
+                  {[1, 2, 3, 4, 5].map((num) => (
+                    <input key={num} type="radio" name="wifi-radio" value={num} onChange={(e) => setWifiRating(e.target.value)} />
+                  ))}
                 </div>
+              </label>
+              <label className='cfr-content'>Power Sockets
+                <div className="rating-circle-row">
+                  {[1, 2, 3, 4, 5].map((num) => (
+                    <input key={num} type="radio" name="power-sockets-radio" value={num} onChange={(e) => setPowerSocketRating(e.target.value)} />
+                  ))}
+                </div>
+              </label>
+              <label className='cfr-content'>Occupancy
+                <div className="rating-circle-row">
+                  {[1, 2, 3, 4, 5].map((num) => (
+                    <input key={num} type="radio" name="occupancy-radio" value={num} onChange={(e) => setOccupancyRating(e.target.value)} />
+                  ))}
+                </div>
+              </label>
+              <label className='cfr-content'>Open Late
+                <div className="rating-circle-row">
+                  {[1, 2, 3, 4, 5].map((num) => (
+                    <input key={num} type="radio" name="open-late-radio" value={num} onChange={(e) => setOpenLateRating(e.target.value)} />
+                  ))}
+                </div>
+              </label>
+
+              <input className='primary' type="submit" value="Submit" />
+              {ratingError  && <p style={{ color: "red" }}>{ratingError}</p>}
+            </form>
+            : 
+            <>
+              <p>You need to be logged in to leave feedback.</p>
+              <a href="/login" className="primary">Log in</a>
+            </>
+        )
+      }
+
+    { !submitRating &&
+      <div className="cf-ratings column">
+
+        <Rating ratingName="WiFi" ratingValue={spot.avg_wifi_rating} ratingIcon={WiFi} />
+        <Rating ratingName="Occupancy" ratingValue={spot.avg_crowdedness_rating} ratingIcon={Crowdedness} />
+        <Rating ratingName="Power Sockets" ratingValue={spot.avg_power_sockets_rating} ratingIcon={PowerSockets} />
+        <Rating ratingName="Open Late" ratingValue={spot.avg_open_late_rating} ratingIcon={Clock} />
+
+      </div>
+    }
+    </div>
+
+    <div id="comments" className='column'>
+
+    <div className="cf-title column">
+        <h3>Comments</h3>
+        <p className="sd-subheading row">
+          <img src={StatusCircle} />
+          {spot.comments.length} comments
+        </p>
+      </div>
+
+      <div className="comments-list column">
+        {spot.comments.map((comment) => (
+            <div className="cl-comment" key={comment.id}>
+              <div className="cl-author-initial">{comment.first_name.slice(0, 1)}</div>
+              <div className="cl-comment-author-wrapper">
+                <div className="clc-content">
+                  <p>{comment.comment}</p>
+                  <p className='cl-comment-date'>{formatDate(comment.created_at)}</p>
+                </div>
+                <p className='cl-author-fname'>{comment.first_name}</p>
               </div>
-          ))}
-        </div>
+            </div>
+        ))}
       </div>
+    </div>
 
-      <div id="share-your-experience" className='column'>
-        <h2 className='sd-h2'>Share Your Experience</h2>
+    <div id="share-your-experience" className='column'>
+      <h3>Share Your Experience</h3>
 
+        { isAuthenticated ?
+            <form onSubmit={handlePostComment} className='column' id='spot-feedback-form'>
 
-          { isAuthenticated ?
-              <form onSubmit={handlePostComment} className='column' id='spot-feedback-form'>
+              <label>
+                Title
+                <input placeholder='Summarise your experience...' type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+              </label>
 
-                <label>
-                  Title
-                  <input placeholder='Summarise your experience...' type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-                </label>
+              <label className='column'>
+                  Comment
+                  <textarea rows={5} value={comment} onChange={(e) => setComment(e.target.value)} placeholder='Share your thoughts about this spot...' >
+                  </textarea>
+              </label>
 
-                <label className='column'>
-                    Comment
-                    <textarea rows={5} value={comment} onChange={(e) => setComment(e.target.value)} placeholder='Share your thoughts about this spot...' >
-                    </textarea>
-                </label>
+              <div className='sff-author-name'>
+                <div className="sff-author-initial">{user?.firstName.slice(0, 1)}</div>
+                <p className='sffa-name'>Leaving feedback as <b>{user?.firstName}</b></p>
+              </div>
 
-                <div className='sff-author-name'>
-                  <div className="sff-author-initial">{user?.firstName.slice(0, 1)}</div>
-                  <p className='sffa-name'>Leaving feedback as <b>{user?.firstName}</b></p>
-                </div>
+              <input type="submit" value="Submit" className='primary' />
+              {error && <p style={{ color: "red" }}>{error}</p>}
+            </form>
+          :
+            <>
+              <p>You need to be logged in to leave a comment.</p>
+              <a href="/login" className="primary">Log in</a>
+            </>
+        }
+    </div>
 
-                <input type="submit" value="Submit" className='primary' />
-                {error && <p style={{ color: "red" }}>{error}</p>}
-              </form>
-            :
-              <>
-                <p>You need to be logged in to leave a comment.</p>
-                <a href="/login" className="primary">Log in</a>
-              </>
-          }
-      </div>
-
-    </section>
-  </div>
+  </section>
   </>
   );
 }

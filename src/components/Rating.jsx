@@ -6,7 +6,7 @@ export default function Rating(props) {
       <div className={`cf-rating ${props.ratingName}`}>
         <img className='cfr-icon' src={props.ratingIcon} />
         <div className="cfr-content">
-          <h6>{props.ratingName}</h6>
+          <h5>{props.ratingName}</h5>
             {        
               props.ratingValue != null ?
                 <div className="rating-circle-row">

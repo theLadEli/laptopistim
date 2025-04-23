@@ -1,0 +1,245 @@
+#spot-loading {
+  width: 100%;
+  text-align: center;
+  padding: 100px 3rem;
+  font-family: 'Funnel Display';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.8rem;
+  line-height: 3.2rem;
+  color: #000000;
+}
+
+header {
+  padding: 80px 3rem;
+}
+
+.spot-cover-img {
+  width: 100%;
+  height: 437px;
+  object-fit: cover;
+}
+
+#spot-details {
+  padding: 30px 8rem;
+  gap: 42px;
+}
+
+.sd-p {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 200;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  color: #000000;
+}
+
+#spot-details #about {
+  gap: 10px;
+}
+
+.sd-subheading {
+  gap: 8px;
+  align-items: center;
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.sd-subheading img {
+  width: 18px;
+  height: 18px;
+}
+
+#community-feedback {
+  gap: 28px;
+  align-items: start;
+}
+
+.cf-title {
+  gap: 10px;
+}
+
+.cf-button-text-light {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 2.2rem;
+  line-height: 2.8rem;
+  color: #262626;
+}
+
+.cf-ratings {
+  gap: 20px;
+}
+
+.cf-rating {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.cfr-icon {
+  width: 26px;
+  height: 26px;
+}
+
+.cfr-content {
+
+  gap: 16px;
+  padding: 2px 0;
+}
+
+.rating-circle-row {
+  display: flex;
+  flex-direction: row;
+  gap: 22px;
+  align-items: center;
+}
+
+.rr-circle {
+  height: 10px;
+  width: 10px;
+  border: solid 1px #000000;
+  background: #fff;
+  border-radius: 50px;
+}
+
+.rr-circle-active {
+  height: 14px;
+  width: 14px;
+  border: inset 5px #000000;
+}
+
+#comments {
+  gap: 30px;
+}
+
+.comments-list {
+  gap: 42px;
+}
+
+.cl-comment-author-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.cl-comment {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.cl-author-initial {
+  width: 40px;
+  min-width: 40px;
+  max-height: 40px;
+  height: 40px;
+  background: #262626;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Funnel Display';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFFFFF;
+}
+
+.clc-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px 30px;
+  background: #FFFFFF;
+  border-bottom: solid 1px #000000;
+}
+
+.clc-content p {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 1.8rem;
+  line-height: 3.2rem;
+  color: #000000;
+}
+
+.cl-comment-date {
+  font-family: 'Funnel Display';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.8rem;
+  line-height: 3.2rem;
+  text-align: right;
+  color: #000000;
+  opacity: 0.65;
+}
+
+.cl-author-fname {
+  font-family: 'Funnel Display';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.8rem;
+  line-height: 3.2rem;
+  color: #000000;
+}
+
+#share-your-experience {
+  gap: 30px;
+}
+
+#spot-feedback-form {
+  max-width: 500px;
+  width: 100%;
+  gap: 20px;
+}
+
+#spot-feedback-form textarea, #spot-feedback-form input[type="text"]{
+  margin-top: 12px;
+  width: 100%;
+}
+
+.sff-author-name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+
+.sff-author-initial {
+  width: 30px;
+  min-width: 30px;
+  max-height: 30px;
+  height: 30px;
+  background: #262626;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Funnel Display';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 22px;
+  color: #FFFFFF;
+}
+
+.sffa-name {
+  font-weight: 400;
+  font-size: 1.8rem;
+  line-height: 2.2rem;
+}
+
+.sffa-name b {
+  font-weight: 600;
+  font-size: 1.8rem;
+  line-height: 2.2rem;
+}

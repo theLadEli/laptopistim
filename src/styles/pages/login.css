@@ -1,0 +1,26 @@
+.reg-header {
+  padding: 120px 12rem 30px 12rem;
+  gap: 6rem;
+}
+
+#login form {
+  max-width: 500px;
+  gap: 20px;
+}
+
+#login {
+  max-width: 1440px;
+  width: 100%;
+  padding: 30px 12rem;
+  gap: 30px;
+}
+
+#login label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#login input[type="submit"] {
+  margin-top: 10px;
+}

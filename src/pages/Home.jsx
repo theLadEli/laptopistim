@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Splide, SplideTrack, SplideSlide } from '@splidejs/react-splide';
-import Cities from '../components/Cities';
+import '../styles/pages/home.css'
 
 // Icons
 import DoubleChevronRight from '../assets/icons/double-chevron-right.svg'
@@ -22,8 +22,7 @@ function Home(){
 
   return (
     <>
-    <div className="home-header-container header-container container">
-      <header className='column'>
+    <header className='column'>
 
         <div className="column title">
           <div className="row headings">
@@ -34,7 +33,7 @@ function Home(){
 
           <div className="row subtitle">
             <hr/>
-            <h5>noun</h5>
+            <h4>noun</h4>
           </div>
         </div>
 
@@ -55,11 +54,9 @@ function Home(){
           <a href='/contribute' className="secondary">Add your cafe</a>
         </div>
 
-      </header>
-    </div>
+    </header>
 
-    <div className="container">
-      <section className='column' id='latest-spots'>
+    <section className='column' id='latest-spots'>
 
         <div className="ls-title row">
           <h2>Latest spots</h2>
@@ -139,17 +136,8 @@ function Home(){
 
         </Splide>
 
-      </section>
-    </div>
+    </section>
 
-    <div className="container">
-      <section className='column' id="cities">
-
-          <h2>Cities</h2>
-          <Cities />
-
-      </section>
-    </div>
     </>
   );
 };

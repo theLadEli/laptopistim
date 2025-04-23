@@ -1,9 +1,9 @@
+import '../styles/components/footer.css'
 import FooterLogo from '../assets/stacked-logo.svg';
 
 export default function Footer() {
     return (
     <>
-    <div className="footer-container">
     <footer>
             <div className="footer-logo">
                 <a href="/">
@@ -13,36 +13,25 @@ export default function Footer() {
 
             <div className="footer-links row">
 
-                <div className="footer-links-col fl-small">
-                    <h4>Quick Links</h4>
+                <div className="footer-links-col">
+                    <h5>Quick Links</h5>
                     <ul>
                         <li><a href='/'>Home</a></li>
                         <li><a href='/spots'>Spots</a></li>
                         <li><a href='/about'>About</a></li>
-                        <li><a href='contribute'>Contribute</a></li>
-                        <li><a href='contact'>Contact</a></li>
+                        <li><a href='/contribute'>Contribute</a></li>
+                        <li><a href='/contact'>Contact</a></li>
                     </ul>
                 </div>
 
-                <div className="footer-links-col fl-small">
-                    <h4>Cities</h4>
-                    <ul>
-                        <li><a>Tel Aviv</a></li>
-                        <li><a>Ramat Gan</a></li>
-                        <li><a>Haifa</a></li>
-                        <li><a>Jerusalem</a></li>
-                    </ul>
-                </div>
-
-                <div className="footer-links-col fl-large">
-                    <h4>Newsletter</h4>
+                <div className="footer-links-col">
+                    <h5>Newsletter</h5>
                     <div className="klaviyo-form-RKWyS3"></div>
                 </div>
 
             </div>
 
         </footer>
-    </div>
     </>
     )
 }

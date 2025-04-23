@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../AuthContext";
+import '../styles/components/navbar.css'
+
 import Logo from "../assets/logo.svg";
 import Hamburger from '../assets/icons/hamburger.svg';
 

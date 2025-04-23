@@ -1,0 +1,35 @@
+menu {
+  padding: 20px 3rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 18rem;
+}
+
+.navbar-hamburger {
+  display: none;
+}
+
+nav {
+  gap: 5rem;
+}
+
+nav li {
+  list-style: none;
+}
+
+nav li a {
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 2.3rem;
+  line-height: 2.9rem;
+  text-transform: capitalize;
+  color: #262626;
+  text-decoration: none;
+}
