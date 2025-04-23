@@ -6,7 +6,7 @@ import { PostHogProvider } from 'posthog-js/react';
 
 const options = {
   api_host: "https://eu.i.posthog.com",
-  debug: import.meta.env.MODE === "development"
+  // debug: import.meta.env.MODE === "development"
 };
 
 ReactDOM.createRoot(document.getElementById('root')).render(
